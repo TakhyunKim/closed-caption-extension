@@ -36,3 +36,7 @@ I'm going to support more sites! 🧑‍💻
 ## 🕍 Architecture
 
 <img width="100%" alt="my extension architecture" src="./public/assets/readme/architecture.png" />
+
+## How to update website?
+
+1. Add the site URL that you add to the content_scripts matched array in the manifest.
