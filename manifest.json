@@ -1,0 +1,11 @@
+{
+  "name": "closed caption korean",
+  "manifest_version": 3,
+  "version": "1.0.0",
+  "description": "Extension for viewing Korean subtitles and existing subtitles together",
+  "permissions": ["scripting"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
