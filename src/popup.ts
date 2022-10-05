@@ -1,9 +1,14 @@
-const translationElement = document.getElementById("translate");
+const translationElement = document.getElementById(
+  "translate"
+) as HTMLDivElement;
 
 const startApplyClosedCaption = () => {
-  const getClosedCaptionInfo = async () => {
-    const closedCaptionElement = document.querySelector(".vjs-text-track-cue");
-    const closedCaptionWrapperElement = closedCaptionElement.parentElement;
+  const getClosedCaptionInfo = () => {
+    const closedCaptionElement = document.querySelector(
+      ".vjs-text-track-cue"
+    ) as HTMLDivElement;
+    const closedCaptionWrapperElement =
+      closedCaptionElement.parentElement as HTMLDivElement;
 
     if (!closedCaptionElement) return;
 
@@ -42,7 +47,7 @@ const startApplyClosedCaption = () => {
 
   const closedCaptionElement = document.querySelector(
     ".vjs-text-track-display"
-  );
+  ) as HTMLDivElement;
 
   const observer = new MutationObserver(getClosedCaptionInfo);
 
@@ -57,9 +62,12 @@ const startApplyClosedCaption = () => {
 
 translationElement.addEventListener("click", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const tabId = tab.id;
+
+  if (!tabId) return;
 
   chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    function: startApplyClosedCaption,
+    target: { tabId },
+    func: startApplyClosedCaption,
   });
 });
