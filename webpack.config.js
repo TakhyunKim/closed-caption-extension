@@ -26,13 +26,13 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: ".", to: ".", context: "public" }],
+      patterns: [{ from: "./public/manifest.json", to: "./manifest.json" }],
     }),
     new HtmlWebpackPlugin({
       title: "popup",
       chunks: ["popup"],
       filename: "popup.html",
-      template: "./src/popup.html",
+      template: "./public/popup.html",
     }),
   ],
 };
