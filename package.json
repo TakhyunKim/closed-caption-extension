@@ -1,12 +1,13 @@
 {
   "name": "closed-caption-extendsion",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "popup.js",
   "repository": "https://github.com/TakhyunKim/Closed-caption-korean.git",
   "author": "Takhyun Kim <kimkih1218@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "dev": "webpack --mode=development --watch",
+    "build": "webpack --mode=production"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.197",
