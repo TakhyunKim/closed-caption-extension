@@ -10,7 +10,9 @@
     "build": "webpack --mode=production"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.19.3",
     "@types/chrome": "^0.0.197",
+    "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^11.0.0",
     "html-webpack-plugin": "^5.5.0",
     "ts-loader": "^9.4.1",
