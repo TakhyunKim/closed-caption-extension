@@ -6,6 +6,7 @@ module.exports = {
   mode: process.env.ENV || "development",
   entry: {
     popup: path.resolve(__dirname, "src", "popup.ts"),
+    content: path.resolve(__dirname, "src", "content.ts"),
     background: path.resolve(__dirname, "src", "background.ts"),
   },
   output: {
