@@ -7,7 +7,7 @@
     "service_worker": "background.js"
   },
   "permissions": ["scripting"],
-  "host_permissions": ["<all_urls>"],
+  "host_permissions": ["*://frontendmasters.com/*"],
   "action": {
     "default_popup": "popup.html"
   }
