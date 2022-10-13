@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener((message, _, response) => {
       body: new URLSearchParams({
         source: "en",
         target: "ko",
-        text: message.content,
+        text: message.payload,
       }),
       headers: {
         "X-Naver-Client-Id": clientId,
