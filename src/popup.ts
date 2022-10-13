@@ -8,8 +8,5 @@ translationElement.addEventListener("click", async () => {
 
   if (!tabId) return;
 
-  chrome.scripting.executeScript({
-    target: { tabId },
-    files: ["content.js"],
-  });
+  chrome.tabs.sendMessage(tabId, { message: "render" });
 });
