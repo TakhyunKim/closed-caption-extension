@@ -6,8 +6,8 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["scripting", "tabs", "webNavigation"],
-  "host_permissions": ["*://frontendmasters.com/*"],
+  "permissions": ["scripting", "tabs"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html"
   },
