@@ -15,7 +15,7 @@ class Model {
       const translatedText = response.data?.message.result.translatedText;
 
       if (!translatedText) return;
-      console.log("model 은 실행");
+
       callback(translatedText);
     });
   }
