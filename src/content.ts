@@ -7,7 +7,7 @@ const init = () => {
   const model = new Model();
   const controller = new Controller(view, model);
 
-  controller.init();
+  controller.translatedAndRender();
 };
 
 const trackAndRenderClosedCaptionElementChange = () => {

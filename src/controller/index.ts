@@ -10,7 +10,7 @@ class Controller {
     this._model = model;
   }
 
-  init() {
+  translatedAndRender() {
     const textContent = this._view.getTextContent();
 
     if (!textContent) return;
