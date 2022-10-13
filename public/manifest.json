@@ -6,9 +6,15 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["scripting"],
-  "host_permissions": ["*://frontendmasters.com/*"],
+  "permissions": ["scripting", "tabs"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://frontendmasters.com/*"],
+      "js": ["content.js"]
+    }
+  ]
 }
