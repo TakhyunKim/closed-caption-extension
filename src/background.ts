@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener((message, _, response) => {
-  if (message.name === "fetchTranslate") {
+  if (message.name === "translate") {
     const apiUrl = "https://openapi.naver.com/v1/papago/n2mt";
     const clientId = "client_id";
     const clientSecretKey = "client_secret_key";
