@@ -34,11 +34,22 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(png|jpe?g)$/,
+        use: [
+          {
+            loader: "url-loader",
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: "./public/manifest.json", to: "./manifest.json" }],
+      patterns: [
+        { from: "./public/assets", to: "./assets" },
+        { from: "./public/manifest.json", to: "./manifest.json" },
+      ],
     }),
     new HtmlWebpackPlugin({
       title: "popup",
