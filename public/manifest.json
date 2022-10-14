@@ -9,12 +9,22 @@
   "permissions": ["scripting", "tabs"],
   "host_permissions": ["<all_urls>"],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/south-korea16.png",
+      "32": "assets/south-korea32.png"
+    }
   },
   "content_scripts": [
     {
       "matches": ["*://frontendmasters.com/*"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "assets/south-korea16.png",
+    "32": "assets/south-korea32.png",
+    "48": "assets/south-korea48.png",
+    "128": "assets/south-korea128.png"
+  }
 }
