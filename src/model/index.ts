@@ -12,9 +12,8 @@ class Model {
       ChromeTranslateAPIMessage,
       ChromeTranslateAPIResponse
     >({ name: "translate", payload: translateTargetText }, (response) => {
-      const translatedText = response.data?.message.result.translatedText;
-
-      if (!translatedText) return;
+      const translatedText = response.data;
+      if (!translatedText || response.error) return;
 
       callback(translatedText);
     });
