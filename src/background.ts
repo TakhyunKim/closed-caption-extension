@@ -1,23 +1,8 @@
 chrome.runtime.onMessage.addListener((message, _, response) => {
   if (message.name === "translate") {
-    const apiUrl = "https://openapi.naver.com/v1/papago/n2mt";
-    const clientId = "client_id";
-    const clientSecretKey = "client_secret_key";
+    const apiURL = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=${message.payload}`;
 
-    const options = {
-      method: "POST",
-      body: new URLSearchParams({
-        source: "en",
-        target: "ko",
-        text: message.payload,
-      }),
-      headers: {
-        "X-Naver-Client-Id": clientId,
-        "X-Naver-Client-Secret": clientSecretKey,
-      },
-    };
-
-    fetch(apiUrl, options)
+    fetch(apiURL)
       .then((res) => {
         if (res.status !== 200) {
           response({ status: "Error", data: "error!" });
@@ -25,7 +10,7 @@ chrome.runtime.onMessage.addListener((message, _, response) => {
         }
 
         res.json().then((data) => {
-          response({ status: "성공", data });
+          response({ status: "성공", data: data[0][0][0] });
         });
       })
       .catch(() => {
