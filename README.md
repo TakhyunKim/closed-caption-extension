@@ -12,9 +12,8 @@ yarn run build
 ```
 
 위 script 를 통해 빌드 파일 생성 후, 크롬 익스텐션 개발자 모드에서 이를 등록, 사용해야합니다.<br />
-_(현재 크롬 익스텐션 등록 심사 중에 있으며 등록 후 README 업데이트 예정입니다)_
 
-### 실행을 위한 설명
+### 실행을 위한 설명 (로컬 환경에서 실행)
 
 1. `yarn run script` 명령어를 실행하여 build 파일을 생성합니다.
 2. 아래 이미지에서 박스로 표기된 확장 프로그램 관리를 클릭합니다.<br />
@@ -44,7 +43,7 @@ yarn run build
 Please register the dist file in Chrome extension developer mode and use it..<br />
 _(This chrome extension is currently under review before publication.)_
 
-### How to use chrome in developer mode
+### How to use chrome in developer mode (in local environment)
 
 1. Create a build file with `yarn run build`
 2. In the chrome tab, click the box in the image below<br />
