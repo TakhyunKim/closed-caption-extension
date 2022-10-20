@@ -13,6 +13,10 @@ yarn run build
 
 위 script 를 통해 빌드 파일 생성 후, 크롬 익스텐션 개발자 모드에서 이를 등록, 사용해야합니다.<br />
 
+### 실행을 위한 설명 (배포 환경)
+
+[Chrome Extension 배포 URL](https://chrome.google.com/webstore/detail/closed-caption-korean/pjfhdffkbjfneojiamjnooaagomkimde?hl=ko)
+
 ### 실행을 위한 설명 (로컬 환경에서 실행)
 
 1. `yarn run script` 명령어를 실행하여 build 파일을 생성합니다.
