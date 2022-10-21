@@ -45,7 +45,10 @@ yarn run build
 ```
 
 Please register the dist file in Chrome extension developer mode and use it..<br />
-_(This chrome extension is currently under review before publication.)_
+
+### How to use chrome in developer mode (in deployment environment)
+
+[Chrome Extension deployment URL](https://chrome.google.com/webstore/detail/closed-caption-korean/pjfhdffkbjfneojiamjnooaagomkimde?hl=ko)
 
 ### How to use chrome in developer mode (in local environment)
 
