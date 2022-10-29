@@ -27,8 +27,10 @@ const trackAndRenderClosedCaptionElementChange = () => {
   observer.observe(closedCaptionWrapperElement, observerOptions);
 };
 
-chrome.runtime.onMessage.addListener((request) => {
-  if (request.message === "render") {
-    trackAndRenderClosedCaptionElementChange();
+chrome.runtime.onMessage.addListener(
+  (request: { message: string; isActiveTranslation: boolean }) => {
+    if (request.message === "render" && request.isActiveTranslation) {
+      trackAndRenderClosedCaptionElementChange();
+    }
   }
-});
+);
