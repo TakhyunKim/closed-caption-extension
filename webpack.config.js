@@ -1,6 +1,7 @@
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: process.env.ENV || "development",
@@ -35,6 +36,11 @@ module.exports = {
         },
       },
       {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        exclude: /node_modules/,
+      },
+      {
         test: /\.(png|jpe?g)$/,
         use: [
           {
@@ -55,6 +61,7 @@ module.exports = {
         { from: "./public/manifest.json", to: "./manifest.json" },
       ],
     }),
+    new MiniCssExtractPlugin({ filename: "popup.css" }),
     new HtmlWebpackPlugin({
       title: "popup",
       chunks: ["popup"],
