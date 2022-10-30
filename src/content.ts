@@ -10,6 +10,14 @@ const init = () => {
   controller.translatedAndRender();
 };
 
+const observer = new MutationObserver(init);
+
+const observerOptions: MutationObserverInit = {
+  childList: true,
+  attributes: true,
+  characterData: true,
+};
+
 const trackAndRenderClosedCaptionElementChange = () => {
   const closedCaptionWrapperElement = document.querySelector(
     ".vjs-text-track-display"
@@ -17,18 +25,19 @@ const trackAndRenderClosedCaptionElementChange = () => {
 
   if (!closedCaptionWrapperElement) return;
 
-  const observer = new MutationObserver(init);
-  const observerOptions: MutationObserverInit = {
-    childList: true,
-    attributes: true,
-    characterData: true,
-  };
-
   observer.observe(closedCaptionWrapperElement, observerOptions);
 };
 
-chrome.runtime.onMessage.addListener((request) => {
-  if (request.message === "render") {
-    trackAndRenderClosedCaptionElementChange();
+const closeTrackAndClosedCaptionElement = () => {
+  observer.disconnect();
+};
+
+chrome.runtime.onMessage.addListener(
+  (request: { message: string; isActiveTranslation: boolean }) => {
+    if (request.message === "render") {
+      request.isActiveTranslation
+        ? trackAndRenderClosedCaptionElementChange()
+        : closeTrackAndClosedCaptionElement();
+    }
   }
-});
+);
