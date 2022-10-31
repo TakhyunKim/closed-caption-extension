@@ -1,5 +1,10 @@
 import "./popup.css";
 
+import Storage from "./Storage";
+import Message from "./message";
+
+import { TRANSLATE_CALL_MESSAGE, SWITCH_STORAGE_KEY } from "./const";
+
 const translationElement = document.getElementById(
   "translate"
 ) as HTMLInputElement;
@@ -12,24 +17,19 @@ const sendToMessageIsActiveTranslation = async (
 
   if (!tabId) return;
 
-  chrome.tabs.sendMessage(tabId, {
-    message: "render",
-    isActiveTranslation: isActiveTranslation,
-  });
-};
-
-const getIsChecked = async (): Promise<boolean> => {
-  const { isChecked } = await chrome.storage.sync.get("isChecked");
-
-  return Boolean(isChecked);
-};
-
-const setIsChecked = async (isChecked: boolean) => {
-  await chrome.storage.sync.set({ isChecked });
+  await Message.sendMessageToContentScript(
+    tabId,
+    TRANSLATE_CALL_MESSAGE,
+    isActiveTranslation
+  );
 };
 
 const setSwitchState = async () => {
-  const isChecked = await getIsChecked();
+  const { isChecked } = await Storage.getStorageValue<boolean | unknown>(
+    SWITCH_STORAGE_KEY
+  );
+
+  if (typeof isChecked !== "boolean") return;
 
   translationElement.checked = isChecked;
 };
@@ -37,7 +37,7 @@ const setSwitchState = async () => {
 translationElement.addEventListener("click", async () => {
   const isChecked = translationElement.checked;
 
-  await setIsChecked(isChecked);
+  await Storage.setStorageValue(SWITCH_STORAGE_KEY, isChecked);
   await sendToMessageIsActiveTranslation(isChecked);
 });
 

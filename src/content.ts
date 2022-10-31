@@ -2,7 +2,11 @@ import View from "./view";
 import Model from "./model";
 import Controller from "./controller";
 
-const init = () => {
+import Storage from "./Storage";
+
+import { TRANSLATE_CALL_MESSAGE, SWITCH_STORAGE_KEY } from "./const";
+
+const renderTranslatedAndRender = () => {
   const view = new View();
   const model = new Model();
   const controller = new Controller(view, model);
@@ -10,34 +14,49 @@ const init = () => {
   controller.translatedAndRender();
 };
 
-const observer = new MutationObserver(init);
+const observer = new MutationObserver(renderTranslatedAndRender);
 
-const observerOptions: MutationObserverInit = {
-  childList: true,
-  attributes: true,
-  characterData: true,
+const connectObserver = (element: Element) => {
+  const observerOptions: MutationObserverInit = {
+    childList: true,
+    attributes: true,
+    characterData: true,
+  };
+
+  observer.observe(element, observerOptions);
 };
 
-const trackAndRenderClosedCaptionElementChange = () => {
+const disconnectClosedCaptionObserver = () => {
+  observer.disconnect();
+};
+
+const connectClosedCaptionWrapperObserver = () => {
   const closedCaptionWrapperElement = document.querySelector(
     ".vjs-text-track-display"
   ) as HTMLDivElement | null;
 
   if (!closedCaptionWrapperElement) return;
 
-  observer.observe(closedCaptionWrapperElement, observerOptions);
+  // connect closed caption wrapper element observer
+  connectObserver(closedCaptionWrapperElement);
 };
 
-const closeTrackAndClosedCaptionElement = () => {
-  observer.disconnect();
+const initialSetRenderClosedCaption = async () => {
+  const { isChecked } = await Storage.getStorageValue(SWITCH_STORAGE_KEY);
+
+  if (typeof isChecked === "boolean" && isChecked) {
+    connectClosedCaptionWrapperObserver();
+  }
 };
 
 chrome.runtime.onMessage.addListener(
-  (request: { message: string; isActiveTranslation: boolean }) => {
-    if (request.message === "render") {
-      request.isActiveTranslation
-        ? trackAndRenderClosedCaptionElementChange()
-        : closeTrackAndClosedCaptionElement();
+  (request: { message: string; data: boolean }) => {
+    if (request.message === TRANSLATE_CALL_MESSAGE) {
+      request.data
+        ? connectClosedCaptionWrapperObserver()
+        : disconnectClosedCaptionObserver();
     }
   }
 );
+
+initialSetRenderClosedCaption();
