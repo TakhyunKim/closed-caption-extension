@@ -51,6 +51,7 @@ class View {
       Number(insetStyle.split(" ")[0].replace("px", "")) + 50
     }px 0 0`;
     newClosedCaptionWrapperElement.classList.add("vjs-text-track-cue");
+    newClosedCaptionWrapperElement.setAttribute("id", "text-track");
 
     return newClosedCaptionWrapperElement;
   }
@@ -63,6 +64,16 @@ class View {
     newClosedCaptionElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
 
     return newClosedCaptionElement;
+  }
+
+  deleteClosedCaptionElement() {
+    const targetClosedCaptionElement = document.getElementById(
+      "text-track"
+    ) as HTMLDivElement | null;
+
+    if (!targetClosedCaptionElement) return;
+
+    targetClosedCaptionElement.remove();
   }
 }
 

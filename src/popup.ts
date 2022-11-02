@@ -41,4 +41,5 @@ translationElement.addEventListener("click", async () => {
   await sendToMessageIsActiveTranslation(isChecked);
 });
 
+// when popup open set default switch state
 setSwitchState();

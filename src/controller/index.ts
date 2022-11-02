@@ -20,6 +20,10 @@ class Controller {
       this._view.render.bind(this._view)
     );
   }
+
+  deleteTranslatedElement() {
+    this._view.deleteClosedCaptionElement();
+  }
 }
 
 export default Controller;
