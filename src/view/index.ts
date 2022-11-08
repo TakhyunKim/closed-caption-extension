@@ -13,7 +13,7 @@ class View {
       this.createClosedCaptionWrapperElement();
 
     const newClosedCaptionElement =
-      this.createClosedCaptionElement(closedCaptionText);
+      this.createClosedCaptionTextElement(closedCaptionText);
 
     newClosedCaptionWrapperElement.appendChild(newClosedCaptionElement);
     closedCaptionParentElement.appendChild(newClosedCaptionWrapperElement);
@@ -56,7 +56,7 @@ class View {
     return newClosedCaptionWrapperElement;
   }
 
-  createClosedCaptionElement(text: string): HTMLDivElement {
+  createClosedCaptionTextElement(text: string): HTMLDivElement {
     const newClosedCaptionElement = document.createElement("div");
 
     newClosedCaptionElement.textContent = text;
