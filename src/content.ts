@@ -2,12 +2,20 @@ import View from "./view";
 import Model from "./model";
 import Controller from "./controller";
 
+import Dom from "./Dom";
 import Storage from "./Storage";
 
 import { TRANSLATE_CALL_MESSAGE, SWITCH_STORAGE_KEY } from "./const";
 
+const hostName = window.location.hostname.split(".");
+const hostUrl = hostName[hostName.length - 2];
+
 const renderTranslatedAndRender = () => {
-  const view = new View();
+  const translatedTargetElement = document.querySelector(
+    Dom[hostUrl].domAttrs
+  ) as HTMLDivElement | null;
+
+  const view = new View(translatedTargetElement);
   const model = new Model();
   const controller = new Controller(view, model);
 
@@ -15,7 +23,11 @@ const renderTranslatedAndRender = () => {
 };
 
 const deleteTranslatedElement = () => {
-  const view = new View();
+  const translatedTargetElement = document.querySelector(
+    Dom[hostUrl].domAttrs
+  ) as HTMLDivElement | null;
+
+  const view = new View(translatedTargetElement);
   const model = new Model();
   const controller = new Controller(view, model);
 
@@ -40,7 +52,7 @@ const disconnectObserver = () => {
 
 const connectClosedCaptionObserver = () => {
   const closedCaptionWrapperElement = document.querySelector(
-    ".vjs-text-track-display"
+    Dom[hostUrl].domWrapperAttrs
   ) as HTMLDivElement | null;
 
   if (!closedCaptionWrapperElement) return;
@@ -61,11 +73,11 @@ const disconnectClosedCaptionObserver = () => {
 };
 
 const initialSetRenderClosedCaption = async () => {
-  const { isChecked } = await Storage.getStorageValue(SWITCH_STORAGE_KEY);
+  const { isChecked } = await Storage.getStorageValue<boolean>(
+    SWITCH_STORAGE_KEY
+  );
 
-  if (typeof isChecked === "boolean" && isChecked) {
-    connectClosedCaptionObserver();
-  }
+  if (isChecked) connectClosedCaptionObserver();
 };
 
 chrome.runtime.onMessage.addListener(
