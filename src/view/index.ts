@@ -1,16 +1,18 @@
 class View {
+  targetOfTranslatingElement: HTMLDivElement | null;
+
+  constructor(targetOfTranslatingElement: HTMLDivElement | null) {
+    this.targetOfTranslatingElement = targetOfTranslatingElement;
+  }
+
   render(closedCaptionText: string) {
-    const closedCaptionElement = document.querySelector(
-      ".vjs-text-track-cue"
-    ) as HTMLDivElement;
+    if (!this.targetOfTranslatingElement) return;
 
-    if (!closedCaptionElement) return;
-
-    const closedCaptionParentElement =
-      closedCaptionElement.parentElement as HTMLDivElement;
+    const closedCaptionParentElement = this.targetOfTranslatingElement
+      .parentElement as HTMLDivElement;
 
     const newClosedCaptionWrapperElement =
-      this.createClosedCaptionWrapperElement();
+      this.createClosedCaptionWrapperElement(this.targetOfTranslatingElement);
 
     const newClosedCaptionElement =
       this.createClosedCaptionTextElement(closedCaptionText);
@@ -19,28 +21,14 @@ class View {
     closedCaptionParentElement.appendChild(newClosedCaptionWrapperElement);
   }
 
-  getClosedCaptionElement() {
-    const closedCaptionElement = document.querySelector(
-      ".vjs-text-track-cue"
-    ) as HTMLDivElement | null;
-
-    return closedCaptionElement;
-  }
-
   getTextContent() {
-    const closedCaptionElement = document.querySelector(
-      ".vjs-text-track-cue"
-    ) as HTMLDivElement | null;
-
-    return closedCaptionElement?.textContent ?? undefined;
+    return this.targetOfTranslatingElement?.textContent ?? undefined;
   }
 
-  createClosedCaptionWrapperElement(): HTMLDivElement {
-    const closedCaptionElement = document.querySelector(
-      ".vjs-text-track-cue"
-    ) as HTMLDivElement;
-
-    const insetStyle = closedCaptionElement.style.inset;
+  createClosedCaptionWrapperElement(
+    targetClosedCaptionElement: HTMLDivElement
+  ): HTMLDivElement {
+    const insetStyle = targetClosedCaptionElement.style.inset;
 
     const newClosedCaptionWrapperElement = document.createElement("div");
 
@@ -50,7 +38,7 @@ class View {
     newClosedCaptionWrapperElement.style.inset = `${
       Number(insetStyle.split(" ")[0].replace("px", "")) + 50
     }px 0 0`;
-    newClosedCaptionWrapperElement.classList.add("vjs-text-track-cue");
+
     newClosedCaptionWrapperElement.setAttribute("id", "text-track");
 
     return newClosedCaptionWrapperElement;
