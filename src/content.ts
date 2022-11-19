@@ -10,27 +10,15 @@ import { TRANSLATE_CALL_MESSAGE, SWITCH_STORAGE_KEY } from "./const";
 const hostName = window.location.hostname.split(".");
 const hostUrl = hostName[hostName.length - 2];
 
+const view = new View(Dom[hostUrl].domAttrs);
+const model = new Model();
+const controller = new Controller(view, model);
+
 const renderTranslatedAndRender = () => {
-  const translatedTargetElement = document.querySelector(
-    Dom[hostUrl].domAttrs
-  ) as HTMLDivElement | null;
-
-  const view = new View(translatedTargetElement);
-  const model = new Model();
-  const controller = new Controller(view, model);
-
   controller.translatedAndRender();
 };
 
 const deleteTranslatedElement = () => {
-  const translatedTargetElement = document.querySelector(
-    Dom[hostUrl].domAttrs
-  ) as HTMLDivElement | null;
-
-  const view = new View(translatedTargetElement);
-  const model = new Model();
-  const controller = new Controller(view, model);
-
   controller.deleteTranslatedElement();
 };
 
