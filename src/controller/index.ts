@@ -1,5 +1,5 @@
-import type View from "../view";
-import type Model from "../model";
+import View from "../view";
+import Model from "../model";
 
 class Controller {
   _view: View;
@@ -11,6 +11,8 @@ class Controller {
   }
 
   translatedAndRender() {
+    this._view.setTargetOfTranslatingElement();
+
     const textContent = this._view.getTextContent();
 
     if (!textContent) return;
