@@ -1,8 +1,10 @@
 class View {
+  domAttr: string;
   targetOfTranslatingElement: HTMLDivElement | null;
 
-  constructor(targetOfTranslatingElement: HTMLDivElement | null) {
-    this.targetOfTranslatingElement = targetOfTranslatingElement;
+  constructor(domAttr: string) {
+    this.domAttr = domAttr;
+    this.targetOfTranslatingElement = null;
   }
 
   render(closedCaptionText: string) {
@@ -19,6 +21,14 @@ class View {
 
     newClosedCaptionWrapperElement.appendChild(newClosedCaptionElement);
     closedCaptionParentElement.appendChild(newClosedCaptionWrapperElement);
+  }
+
+  setTargetOfTranslatingElement() {
+    const targetOfTranslatingElement = document.querySelector(
+      this.domAttr
+    ) as HTMLDivElement | null;
+
+    this.targetOfTranslatingElement = targetOfTranslatingElement;
   }
 
   getTextContent() {
