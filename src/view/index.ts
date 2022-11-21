@@ -35,20 +35,27 @@ class View {
     return this.targetOfTranslatingElement?.textContent ?? undefined;
   }
 
+  createClosedCaptionStyle(targetClosedCaptionElement: HTMLDivElement) {
+    const elementPosition = targetClosedCaptionElement.getBoundingClientRect();
+    const closedCaptionYPosition = elementPosition.bottom - 50;
+
+    return { bottom: closedCaptionYPosition };
+  }
+
   createClosedCaptionWrapperElement(
     targetClosedCaptionElement: HTMLDivElement
   ): HTMLDivElement {
-    const insetStyle = targetClosedCaptionElement.style.inset;
+    const closedCaptionStyle = this.createClosedCaptionStyle(
+      targetClosedCaptionElement
+    );
 
     const newClosedCaptionWrapperElement = document.createElement("div");
 
     newClosedCaptionWrapperElement.style.textAlign = "center";
     newClosedCaptionWrapperElement.style.position = "absolute";
     newClosedCaptionWrapperElement.style.width = "100%";
-    newClosedCaptionWrapperElement.style.inset = `${
-      Number(insetStyle.split(" ")[0].replace("px", "")) + 50
-    }px 0 0`;
-
+    newClosedCaptionWrapperElement.style.bottom =
+      closedCaptionStyle.bottom.toString();
     newClosedCaptionWrapperElement.setAttribute("id", "text-track");
 
     return newClosedCaptionWrapperElement;
