@@ -13,14 +13,10 @@ class View {
     const closedCaptionParentElement = this.targetOfTranslatingElement
       .parentElement as HTMLDivElement;
 
-    const newClosedCaptionWrapperElement =
-      this.createClosedCaptionWrapperElement(this.targetOfTranslatingElement);
-
     const newClosedCaptionElement =
       this.createClosedCaptionTextElement(closedCaptionText);
 
-    newClosedCaptionWrapperElement.appendChild(newClosedCaptionElement);
-    closedCaptionParentElement.appendChild(newClosedCaptionWrapperElement);
+    closedCaptionParentElement.appendChild(newClosedCaptionElement);
   }
 
   setTargetOfTranslatingElement() {
