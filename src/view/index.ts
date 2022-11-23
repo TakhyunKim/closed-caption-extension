@@ -31,36 +31,12 @@ class View {
     return this.targetOfTranslatingElement?.textContent ?? undefined;
   }
 
-  createClosedCaptionStyle(targetClosedCaptionElement: HTMLDivElement) {
-    const elementPosition = targetClosedCaptionElement.getBoundingClientRect();
-    const closedCaptionYPosition = elementPosition.bottom - 50;
-
-    return { bottom: closedCaptionYPosition };
-  }
-
-  createClosedCaptionWrapperElement(
-    targetClosedCaptionElement: HTMLDivElement
-  ): HTMLDivElement {
-    const closedCaptionStyle = this.createClosedCaptionStyle(
-      targetClosedCaptionElement
-    );
-
-    const newClosedCaptionWrapperElement = document.createElement("div");
-
-    newClosedCaptionWrapperElement.style.textAlign = "center";
-    newClosedCaptionWrapperElement.style.position = "absolute";
-    newClosedCaptionWrapperElement.style.width = "100%";
-    newClosedCaptionWrapperElement.style.bottom =
-      closedCaptionStyle.bottom.toString();
-    newClosedCaptionWrapperElement.setAttribute("id", "text-track");
-
-    return newClosedCaptionWrapperElement;
-  }
-
   createClosedCaptionTextElement(text: string): HTMLDivElement {
     const newClosedCaptionElement = document.createElement("div");
 
     newClosedCaptionElement.textContent = text;
+    newClosedCaptionElement.setAttribute("id", "text-track");
+
     newClosedCaptionElement.style.color = "rgb(255, 255, 255)";
     newClosedCaptionElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
 
