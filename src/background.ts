@@ -1,6 +1,8 @@
 chrome.runtime.onMessage.addListener((message, _, response) => {
   if (message.name === "translate") {
-    const apiURL = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=${message.payload}`;
+    const apiURL = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=${encodeURIComponent(
+      message.payload
+    )}`;
 
     fetch(apiURL)
       .then((res) => {
