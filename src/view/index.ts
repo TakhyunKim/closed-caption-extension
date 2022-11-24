@@ -10,17 +10,12 @@ class View {
   render(closedCaptionText: string) {
     if (!this.targetOfTranslatingElement) return;
 
-    const closedCaptionParentElement = this.targetOfTranslatingElement
-      .parentElement as HTMLDivElement;
-
-    const newClosedCaptionWrapperElement =
-      this.createClosedCaptionWrapperElement(this.targetOfTranslatingElement);
+    this.setClosedCaptionStyle(this.targetOfTranslatingElement);
 
     const newClosedCaptionElement =
       this.createClosedCaptionTextElement(closedCaptionText);
 
-    newClosedCaptionWrapperElement.appendChild(newClosedCaptionElement);
-    closedCaptionParentElement.appendChild(newClosedCaptionWrapperElement);
+    this.targetOfTranslatingElement.appendChild(newClosedCaptionElement);
   }
 
   setTargetOfTranslatingElement() {
@@ -35,30 +30,21 @@ class View {
     return this.targetOfTranslatingElement?.textContent ?? undefined;
   }
 
-  createClosedCaptionWrapperElement(
-    targetClosedCaptionElement: HTMLDivElement
-  ): HTMLDivElement {
-    const insetStyle = targetClosedCaptionElement.style.inset;
-
-    const newClosedCaptionWrapperElement = document.createElement("div");
-
-    newClosedCaptionWrapperElement.style.textAlign = "center";
-    newClosedCaptionWrapperElement.style.position = "absolute";
-    newClosedCaptionWrapperElement.style.width = "100%";
-    newClosedCaptionWrapperElement.style.inset = `${
-      Number(insetStyle.split(" ")[0].replace("px", "")) + 50
-    }px 0 0`;
-
-    newClosedCaptionWrapperElement.setAttribute("id", "text-track");
-
-    return newClosedCaptionWrapperElement;
+  setClosedCaptionStyle(closedCaptionElement: HTMLDivElement) {
+    closedCaptionElement.style.display = 'flex';
+    closedCaptionElement.style.flexDirection = 'column';
+    closedCaptionElement.style.justifyContent = 'center';
+    closedCaptionElement.style.alignItems = 'center';
   }
 
   createClosedCaptionTextElement(text: string): HTMLDivElement {
     const newClosedCaptionElement = document.createElement("div");
 
     newClosedCaptionElement.textContent = text;
+    newClosedCaptionElement.setAttribute("id", "text-track");
+
     newClosedCaptionElement.style.color = "rgb(255, 255, 255)";
+    newClosedCaptionElement.style.marginTop = '10px';
     newClosedCaptionElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
 
     return newClosedCaptionElement;
