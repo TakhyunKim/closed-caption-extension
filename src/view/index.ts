@@ -10,13 +10,12 @@ class View {
   render(closedCaptionText: string) {
     if (!this.targetOfTranslatingElement) return;
 
-    const closedCaptionParentElement = this.targetOfTranslatingElement
-      .parentElement as HTMLDivElement;
+    this.setClosedCaptionStyle(this.targetOfTranslatingElement);
 
     const newClosedCaptionElement =
       this.createClosedCaptionTextElement(closedCaptionText);
 
-    closedCaptionParentElement.appendChild(newClosedCaptionElement);
+    this.targetOfTranslatingElement.appendChild(newClosedCaptionElement);
   }
 
   setTargetOfTranslatingElement() {
@@ -31,6 +30,13 @@ class View {
     return this.targetOfTranslatingElement?.textContent ?? undefined;
   }
 
+  setClosedCaptionStyle(closedCaptionElement: HTMLDivElement) {
+    closedCaptionElement.style.display = 'flex';
+    closedCaptionElement.style.flexDirection = 'column';
+    closedCaptionElement.style.justifyContent = 'center';
+    closedCaptionElement.style.alignItems = 'center';
+  }
+
   createClosedCaptionTextElement(text: string): HTMLDivElement {
     const newClosedCaptionElement = document.createElement("div");
 
@@ -38,6 +44,7 @@ class View {
     newClosedCaptionElement.setAttribute("id", "text-track");
 
     newClosedCaptionElement.style.color = "rgb(255, 255, 255)";
+    newClosedCaptionElement.style.marginTop = '10px';
     newClosedCaptionElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
 
     return newClosedCaptionElement;
