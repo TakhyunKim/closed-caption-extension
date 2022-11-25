@@ -18,6 +18,10 @@ const Dom: TRANSLATING_DOM_INFO = {
     domWrapperAttrs: ".vjs-text-track-display",
     domAttrs: ".vjs-text-track-cue",
   },
+  udemy: {
+    domWrapperAttrs: ".captions-display--captions-container--1-aQJ",
+    domAttrs: ".captions-display--captions-cue-text--ECkJu",
+  },
 };
 
 export default Dom;

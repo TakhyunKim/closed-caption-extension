@@ -17,7 +17,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://frontendmasters.com/*"],
+      "matches": ["*://frontendmasters.com/*", "*://www.udemy.com/*"],
       "js": ["content.js"]
     }
   ],
