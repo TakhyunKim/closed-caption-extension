@@ -50,6 +50,14 @@ class View {
     return newClosedCaptionElement;
   }
 
+  getTranslatedElement() {
+    const translatedElement = document.getElementById(
+      "text-track"
+    ) as HTMLDivElement | null;
+
+    return translatedElement;
+  }
+
   deleteClosedCaptionElement() {
     const targetClosedCaptionElement = document.getElementById(
       "text-track"
