@@ -14,7 +14,7 @@ const view = new View(Dom[hostUrl].domAttrs);
 const model = new Model();
 const controller = new Controller(view, model);
 
-const renderTranslatedAndRender = () => {
+const renderTranslatedElement = () => {
   controller.translatedAndRender();
 };
 
@@ -46,7 +46,7 @@ const connectClosedCaptionObserver = () => {
   if (!closedCaptionWrapperElement) return;
 
   // render initial translated Element
-  renderTranslatedAndRender();
+  renderTranslatedElement();
 
   // connect closed caption wrapper element observer
   connectObserver(closedCaptionWrapperElement);
