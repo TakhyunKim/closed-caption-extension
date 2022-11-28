@@ -22,7 +22,13 @@ const deleteTranslatedElement = () => {
   controller.deleteTranslatedElement();
 };
 
-const observer = new MutationObserver(renderTranslatedAndRender);
+const renderTranslatedElementAndSetObserver = () => {
+  connectClosedCaptionTargetElementObserver();
+
+  controller.translatedAndRender();
+};
+
+const observer = new MutationObserver(renderTranslatedElementAndSetObserver);
 
 const connectObserver = (element: Element) => {
   const observerOptions: MutationObserverInit = {
@@ -36,6 +42,14 @@ const connectObserver = (element: Element) => {
 
 const disconnectObserver = () => {
   observer.disconnect();
+};
+
+const connectClosedCaptionTargetElementObserver = () => {
+  const closedCaptionElement = document.querySelector(Dom[hostUrl].domAttrs);
+
+  if (!closedCaptionElement) return;
+
+  connectObserver(closedCaptionElement);
 };
 
 const connectClosedCaptionObserver = () => {
