@@ -10,17 +10,38 @@ class Controller {
     this._model = model;
   }
 
+  compareIsSameTargetOfTranslatingText() {
+    const textContent = this._view.getTextContent();
+    const prevTargetOfTranslatingText =
+      this._model.getTargetOfTranslatingText();
+
+    return textContent === prevTargetOfTranslatingText;
+  }
+
+  checkIsSameTargetElementAndText() {
+    const translatedElement = this._view.getTranslatedElement();
+    const isSameTargetOfTranslatingText =
+      this.compareIsSameTargetOfTranslatingText();
+
+    return translatedElement && isSameTargetOfTranslatingText;
+  }
+
   translatedAndRender() {
     this._view.setTargetOfTranslatingElement();
 
+    const isSameTargetElementAndText = this.checkIsSameTargetElementAndText();
+
     const textContent = this._view.getTextContent();
 
-    if (!textContent) return;
+    if (!textContent || isSameTargetElementAndText) return;
 
-    this._model.getTranslatedText(
-      textContent,
-      this._view.render.bind(this._view)
-    );
+    const deletePrevElementEndRender = (translatedText: string) => {
+      // delete prev closed caption element
+      this._view.deleteClosedCaptionElement();
+      this._view.render.call(this._view, translatedText);
+    };
+
+    this._model.getTranslatedText(textContent, deletePrevElementEndRender);
   }
 
   deleteTranslatedElement() {

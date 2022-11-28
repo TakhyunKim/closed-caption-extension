@@ -14,7 +14,7 @@ const view = new View(Dom[hostUrl].domAttrs);
 const model = new Model();
 const controller = new Controller(view, model);
 
-const renderTranslatedAndRender = () => {
+const renderTranslatedElement = () => {
   controller.translatedAndRender();
 };
 
@@ -22,7 +22,13 @@ const deleteTranslatedElement = () => {
   controller.deleteTranslatedElement();
 };
 
-const observer = new MutationObserver(renderTranslatedAndRender);
+const renderTranslatedElementAndSetObserver = () => {
+  connectClosedCaptionTargetElementObserver();
+
+  controller.translatedAndRender();
+};
+
+const observer = new MutationObserver(renderTranslatedElementAndSetObserver);
 
 const connectObserver = (element: Element) => {
   const observerOptions: MutationObserverInit = {
@@ -38,6 +44,14 @@ const disconnectObserver = () => {
   observer.disconnect();
 };
 
+const connectClosedCaptionTargetElementObserver = () => {
+  const closedCaptionElement = document.querySelector(Dom[hostUrl].domAttrs);
+
+  if (!closedCaptionElement) return;
+
+  connectObserver(closedCaptionElement);
+};
+
 const connectClosedCaptionObserver = () => {
   const closedCaptionWrapperElement = document.querySelector(
     Dom[hostUrl].domWrapperAttrs
@@ -46,7 +60,7 @@ const connectClosedCaptionObserver = () => {
   if (!closedCaptionWrapperElement) return;
 
   // render initial translated Element
-  renderTranslatedAndRender();
+  renderTranslatedElement();
 
   // connect closed caption wrapper element observer
   connectObserver(closedCaptionWrapperElement);
