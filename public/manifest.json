@@ -17,7 +17,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://frontendmasters.com/*", "*://www.udemy.com/*"],
+      "matches": [
+        "*://frontendmasters.com/*",
+        "*://www.udemy.com/*",
+        "*://www.youtube.com/*"
+      ],
       "js": ["content.js"]
     }
   ],

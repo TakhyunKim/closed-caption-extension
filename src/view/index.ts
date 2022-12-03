@@ -27,9 +27,19 @@ class View {
   }
 
   getTextContent() {
-    return (
-      this.targetOfTranslatingElement?.firstChild?.textContent ?? undefined
-    );
+    if (!this.targetOfTranslatingElement) return;
+
+    const list = Array.from(this.targetOfTranslatingElement.children);
+    let textContent = "";
+
+    list.forEach((element) => {
+      // Translated subtitles are not included in the textContent.
+      if (element.id === "text-track") return;
+
+      textContent += `${element.textContent} `;
+    });
+
+    return textContent;
   }
 
   setClosedCaptionStyle(closedCaptionElement: HTMLDivElement) {

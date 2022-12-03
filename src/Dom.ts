@@ -22,6 +22,10 @@ const Dom: TRANSLATING_DOM_INFO = {
     domWrapperAttrs: ".captions-display--captions-container--1-aQJ",
     domAttrs: ".captions-display--captions-cue-text--ECkJu",
   },
+  youtube: {
+    domWrapperAttrs: ".ytp-caption-window-container",
+    domAttrs: ".captions-text",
+  },
 };
 
 export default Dom;
