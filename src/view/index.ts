@@ -32,6 +32,13 @@ class View {
     const list = Array.from(this.targetOfTranslatingElement.children);
     let textContent = "";
 
+    if (
+      list.length === 0 &&
+      this.targetOfTranslatingElement.firstChild?.textContent
+    ) {
+      return this.targetOfTranslatingElement.firstChild.textContent;
+    }
+
     list.forEach((element) => {
       // Translated subtitles are not included in the textContent.
       if (element.id === "text-track") return;
