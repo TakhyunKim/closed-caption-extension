@@ -4,7 +4,7 @@
 현재는 frontend masters, udemy, youtube 사이트를 지원합니다.<br />
 추후 적용 가능한 사이트를 늘려나갈 계획입니다.
 
-## 실행 방법
+## 사이트 지원을 위한 실행 방법
 
 ```bash
 yarn install
@@ -37,7 +37,7 @@ yarn run build
 closed caption korean is a chrome extension that<br />
 displays both English and Korean subtitles in the current frontend masters.
 
-## How to run extension
+## How to run for site support
 
 ```bash
 yarn install
