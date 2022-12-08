@@ -35,6 +35,9 @@ yarn run build
    크롬 익스텐션의 translate 버튼을 클릭합니다.<br />
    <img width="50%" alt="example running" src="./public/assets/readme/example-running.gif" />
 
+Let's check English and Korean subtitles together and understand and enjoy the contents more easily and quickly.
+This translation chromium extension aims to lower the language barrier created by the language.
+
 ## What is closed caption korean extension
 
 closed caption korean is a chrome extension that<br />
