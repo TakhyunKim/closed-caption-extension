@@ -1,3 +1,9 @@
+<div align="center">
+   <h1>Closed Caption Extension</h1>
+   <strong>Let's check English and Korean subtitles together<br /> and understand and enjoy the contents more easily and quickly</strong>
+   <h5>Break down the wall of one-click language</h5>
+</div>
+
 영어, 한글 자막을 함께 확인하며 콘텐츠를 더 쉽고 빠르게 이해하고 즐겨요.
 이 번역 크롬 익스텐션은 언어로 인해 생기는 언어 장벽을 낮추는 것을 목표로 하고 있습니다.
 
