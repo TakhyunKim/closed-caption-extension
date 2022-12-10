@@ -1,5 +1,5 @@
 <div align="center">
-   <img width="40%" alt="chrome tab" src="./public/assets/south-korea16.png" />
+   <img width="40%" alt="chrome tab" src="./public/assets/readme/kitty.svg" />
    <h1>Closed Caption Extension</h1>
    <strong>Let's check English and Korean subtitles together<br /> and understand and enjoy the contents more easily and quickly</strong>
    <h5>Break down the wall of one-click language</h5>

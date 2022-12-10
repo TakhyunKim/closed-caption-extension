@@ -26,9 +26,9 @@
     }
   ],
   "icons": {
-    "16": "assets/south-korea16.png",
-    "32": "assets/south-korea32.png",
-    "48": "assets/south-korea48.png",
-    "128": "assets/south-korea128.png"
+    "16": "assets/kitty-16.png",
+    "32": "assets/kitty-32.png",
+    "48": "assets/kitty-48.png",
+    "128": "assets/kitty-128.png"
   }
 }
