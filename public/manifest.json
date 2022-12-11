@@ -11,8 +11,8 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "assets/south-korea16.png",
-      "32": "assets/south-korea32.png"
+      "16": "assets/kitty-16.png",
+      "32": "assets/kitty-32.png"
     }
   },
   "content_scripts": [
