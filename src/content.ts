@@ -5,7 +5,11 @@ import Controller from "./controller";
 import Dom from "./Dom";
 import Storage from "./Storage";
 
-import { TRANSLATE_CALL_MESSAGE, SWITCH_STORAGE_KEY } from "./const";
+import {
+  SWITCH_STORAGE_KEY,
+  TRANSLATE_CALL_MESSAGE,
+  FONT_SIZE_RANGE_MESSAGE,
+} from "./const";
 
 const hostName = window.location.hostname.split(".");
 const hostUrl = hostName[hostName.length - 2];
@@ -13,6 +17,10 @@ const hostUrl = hostName[hostName.length - 2];
 const view = new View(Dom[hostUrl].domAttrs);
 const model = new Model();
 const controller = new Controller(view, model);
+
+const changeFontSizeRangeElement = (value: number) => {
+  controller.changeFontSizeRangeElement(value);
+};
 
 const renderTranslatedElement = () => {
   controller.translatedAndRender();
@@ -83,11 +91,15 @@ const initialSetRenderClosedCaption = async () => {
 };
 
 chrome.runtime.onMessage.addListener(
-  (request: { message: string; data: boolean }) => {
+  (request: { message: string; data: unknown }) => {
     if (request.message === TRANSLATE_CALL_MESSAGE) {
       request.data
         ? connectClosedCaptionObserver()
         : disconnectClosedCaptionObserver();
+    }
+
+    if (request.message === FONT_SIZE_RANGE_MESSAGE) {
+      changeFontSizeRangeElement(request.data as number);
     }
   }
 );
