@@ -1,7 +1,7 @@
 {
   "name": "closed caption korean",
   "manifest_version": 3,
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Extension for viewing Korean subtitles and existing subtitles together",
   "background": {
     "service_worker": "background.js"
@@ -11,8 +11,8 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "assets/south-korea16.png",
-      "32": "assets/south-korea32.png"
+      "16": "assets/kitty-16.png",
+      "32": "assets/kitty-32.png"
     }
   },
   "content_scripts": [
