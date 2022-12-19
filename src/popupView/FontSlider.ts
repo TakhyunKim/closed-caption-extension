@@ -21,10 +21,9 @@ class FontSlider {
     this.sliderElement.value = value;
   }
 
-  setFontRangeStyle() {
+  setFontRangeStyle(rangeValue: number) {
     const min = Number(this.sliderElement.min);
     const max = Number(this.sliderElement.max);
-    const rangeValue = Number(this.sliderElement.value);
 
     this.sliderElement.style.backgroundSize =
       ((rangeValue - min) * 100) / (max - min) + "% 100%";
