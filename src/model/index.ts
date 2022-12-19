@@ -4,9 +4,11 @@ import type {
 } from "./types";
 
 class Model {
+  fontSize: number;
   targetOfTranslatingText: string;
 
   constructor() {
+    this.fontSize = 25;
     this.targetOfTranslatingText = "";
   }
 
@@ -16,6 +18,14 @@ class Model {
 
   setTargetOfTranslatingText(targetOfTranslatingText: string) {
     this.targetOfTranslatingText = targetOfTranslatingText;
+  }
+
+  setFontSize(fontSize: number) {
+    this.fontSize = fontSize;
+  }
+
+  getFontSize() {
+    return this.fontSize;
   }
 
   getTranslatedText(

@@ -7,13 +7,15 @@ class View {
     this.targetOfTranslatingElement = null;
   }
 
-  render(closedCaptionText: string) {
+  render(closedCaptionText: string, fontSize: number) {
     if (!this.targetOfTranslatingElement) return;
 
     this.setClosedCaptionStyle(this.targetOfTranslatingElement);
 
-    const newClosedCaptionElement =
-      this.createClosedCaptionTextElement(closedCaptionText);
+    const newClosedCaptionElement = this.createClosedCaptionTextElement(
+      closedCaptionText,
+      fontSize
+    );
 
     this.targetOfTranslatingElement.appendChild(newClosedCaptionElement);
   }
@@ -56,17 +58,31 @@ class View {
     closedCaptionElement.style.alignItems = "center";
   }
 
-  createClosedCaptionTextElement(text: string): HTMLDivElement {
+  createClosedCaptionTextElement(
+    text: string,
+    fontSize: number
+  ): HTMLDivElement {
     const newClosedCaptionElement = document.createElement("div");
 
     newClosedCaptionElement.textContent = text;
     newClosedCaptionElement.setAttribute("id", "text-track");
 
-    newClosedCaptionElement.style.color = "rgb(255, 255, 255)";
     newClosedCaptionElement.style.marginTop = "10px";
+    newClosedCaptionElement.style.fontSize = `${fontSize}px`;
+    newClosedCaptionElement.style.color = "rgb(255, 255, 255)";
     newClosedCaptionElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
 
     return newClosedCaptionElement;
+  }
+
+  setClosedCaptionFontSize(fontSize: number) {
+    const targetClosedCaptionElement = document.getElementById(
+      "text-track"
+    ) as HTMLDivElement | null;
+
+    if (!targetClosedCaptionElement) return;
+
+    targetClosedCaptionElement.style.fontSize = `${fontSize}px`;
   }
 
   getTranslatedElement() {
