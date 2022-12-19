@@ -38,10 +38,18 @@ class Controller {
     const deletePrevElementEndRender = (translatedText: string) => {
       // delete prev closed caption element
       this._view.deleteClosedCaptionElement();
-      this._view.render.call(this._view, translatedText);
+
+      const fontSize = this._model.getFontSize();
+
+      this._view.render.call(this._view, translatedText, fontSize);
     };
 
     this._model.getTranslatedText(textContent, deletePrevElementEndRender);
+  }
+
+  changeFontSizeRangeElement(value: number) {
+    this._model.setFontSize(value);
+    this._view.setClosedCaptionFontSize(value);
   }
 
   deleteTranslatedElement() {

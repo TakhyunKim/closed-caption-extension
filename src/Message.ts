@@ -12,7 +12,7 @@ const Message = {
   async sendMessageToContentScript(
     tabId: number,
     message: string,
-    data: unknown
+    data?: unknown
   ) {
     chrome.tabs.sendMessage(tabId, { message, data });
   },
