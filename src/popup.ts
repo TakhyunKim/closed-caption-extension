@@ -7,6 +7,7 @@ import FontSlider from "./popupView/FontSlider";
 
 import {
   SWITCH_STORAGE_KEY,
+  FONT_SIZE_STORAGE_KEY,
   TRANSLATE_CALL_MESSAGE,
   FONT_SIZE_RANGE_MESSAGE,
 } from "./const";
@@ -40,7 +41,20 @@ const sendToMessageIsActiveTranslation = async (
   );
 };
 
-const setSwitchState = async () => {
+const sendToMessageRangeValue = async (rangeValue: number) => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const tabId = tab.id;
+
+  if (!tabId) return;
+
+  await Message.sendMessageToContentScript(
+    tabId,
+    FONT_SIZE_RANGE_MESSAGE,
+    rangeValue
+  );
+};
+
+const setInitialSwitchState = async () => {
   const { isChecked } = await Storage.getStorageValue<boolean | unknown>(
     SWITCH_STORAGE_KEY
   );
@@ -48,6 +62,23 @@ const setSwitchState = async () => {
   if (typeof isChecked !== "boolean") return;
 
   translationElement.checked = isChecked;
+};
+
+const setInitialFontRangeSlider = async () => {
+  const { fontSize } = await Storage.getStorageValue<number | unknown>(
+    FONT_SIZE_STORAGE_KEY
+  );
+
+  if (typeof fontSize !== "number") return;
+
+  FontSliderInstance.setRangeValue(String(fontSize));
+  FontSliderInstance.setFontRangeStyle(fontSize);
+};
+
+const setFontRangeStyleAndStorageValue = async (rangeValue: number) => {
+  await Storage.setStorageValue(FONT_SIZE_STORAGE_KEY, rangeValue);
+
+  FontSliderInstance.setFontRangeStyle(rangeValue);
 };
 
 translationElement.addEventListener("click", async () => {
@@ -58,19 +89,12 @@ translationElement.addEventListener("click", async () => {
 });
 
 rangeInputElement.addEventListener("input", async () => {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  const tabId = tab.id;
+  const rangeValue = Number(FontSliderInstance.getRangeValue());
 
-  FontSliderInstance.setFontRangeStyle();
-
-  if (!tabId) return;
-
-  await Message.sendMessageToContentScript(
-    tabId,
-    FONT_SIZE_RANGE_MESSAGE,
-    Number(rangeElement.value)
-  );
+  await setFontRangeStyleAndStorageValue(rangeValue);
+  await sendToMessageRangeValue(rangeValue);
 });
 
 // when popup open set default switch state
-setSwitchState();
+setInitialSwitchState();
+setInitialFontRangeSlider();
