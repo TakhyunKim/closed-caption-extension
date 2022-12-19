@@ -7,6 +7,7 @@ import Storage from "./Storage";
 
 import {
   SWITCH_STORAGE_KEY,
+  FONT_SIZE_STORAGE_KEY,
   TRANSLATE_CALL_MESSAGE,
   FONT_SIZE_RANGE_MESSAGE,
 } from "./const";
@@ -86,6 +87,13 @@ const initialSetRenderClosedCaption = async () => {
   const { isChecked } = await Storage.getStorageValue<boolean>(
     SWITCH_STORAGE_KEY
   );
+
+  const { fontSize } = await Storage.getStorageValue<number | unknown>(
+    FONT_SIZE_STORAGE_KEY
+  );
+
+  if (fontSize && typeof fontSize === "number")
+    changeFontSizeRangeElement(fontSize);
 
   if (isChecked) connectClosedCaptionObserver();
 };
