@@ -20,7 +20,8 @@
       "matches": [
         "*://frontendmasters.com/*",
         "*://www.udemy.com/*",
-        "*://www.youtube.com/*"
+        "*://www.youtube.com/*",
+        "*://epicreact.dev/*"
       ],
       "js": ["content.js"]
     }

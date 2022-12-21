@@ -11,7 +11,7 @@ interface TRANSLATING_DOM_INFO {
 
 /**
  * The key of the DOM object is host name.
- * For example: https://(this url is key>).com
+ * For example: https://(this url is key>).com or https://(this url is key>).something
  */
 const Dom: TRANSLATING_DOM_INFO = {
   frontendmasters: {
@@ -25,6 +25,10 @@ const Dom: TRANSLATING_DOM_INFO = {
   youtube: {
     domWrapperAttrs: ".ytp-caption-window-container",
     domAttrs: ".captions-text",
+  },
+  epicreact: {
+    domWrapperAttrs: ".bmpui-ui-subtitle-overlay",
+    domAttrs: ".bmpui-ui-subtitle-label",
   },
 };
 
