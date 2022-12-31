@@ -2,10 +2,10 @@ const replaceNewLineSequenceToSpace = (text: string) => {
   return text.replace(/\r?\n/g, " ");
 };
 
-chrome.runtime.onMessage.addListener((message, _, response) => {
-  if (message.name === "translate") {
+chrome.runtime.onMessage.addListener(({ message, payload }, _, response) => {
+  if (message === "translate") {
     const translateTargetText = encodeURIComponent(
-      replaceNewLineSequenceToSpace(message.payload)
+      replaceNewLineSequenceToSpace(payload)
     );
     const apiURL = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=${translateTargetText}`;
 

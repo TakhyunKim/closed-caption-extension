@@ -17,13 +17,15 @@ const Message = {
     chrome.tabs.sendMessage(tabId, { message, data });
   },
 
-  async sendMessageToBackground(message: string, payload: string) {
-    const response = chrome.runtime.sendMessage<
-      ChromeAPIRequest,
-      ChromeAPIResponse
-    >({ message, payload });
-
-    return response;
+  async sendMessageToBackground(
+    message: string,
+    payload: string,
+    callback: (response: ChromeAPIResponse) => void
+  ) {
+    chrome.runtime.sendMessage<ChromeAPIRequest, ChromeAPIResponse>(
+      { message, payload },
+      callback
+    );
   },
 };
 

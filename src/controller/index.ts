@@ -1,6 +1,7 @@
 import View from "../view";
 import Model from "../model";
 
+import { sendMessageToBackgroundTranslatingText } from "../api/message";
 class Controller {
   _view: View;
   _model: Model;
@@ -26,7 +27,7 @@ class Controller {
     return translatedElement && isSameTargetOfTranslatingText;
   }
 
-  translatedAndRender() {
+  async translatedAndRender() {
     this._view.setTargetOfTranslatingElement();
 
     const isSameTargetElementAndText = this.checkIsSameTargetElementAndText();
@@ -38,13 +39,17 @@ class Controller {
     const deletePrevElementEndRender = (translatedText: string) => {
       // delete prev closed caption element
       this._view.deleteClosedCaptionElement();
+      this._model.setTargetOfTranslatingText(textContent);
 
       const fontSize = this._model.getFontSize();
 
       this._view.render.call(this._view, translatedText, fontSize);
     };
 
-    this._model.getTranslatedText(textContent, deletePrevElementEndRender);
+    sendMessageToBackgroundTranslatingText(
+      textContent,
+      deletePrevElementEndRender
+    );
   }
 
   changeFontSizeRangeElement(value: number) {

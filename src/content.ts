@@ -3,14 +3,15 @@ import Model from "./model";
 import Controller from "./controller";
 
 import Dom from "./Dom";
-import Storage from "./Storage";
+import {
+  getSwitchValueInStorage,
+  getFontSizeValueInStorage,
+} from "./api/storage";
 
 import {
-  SWITCH_STORAGE_KEY,
-  FONT_SIZE_STORAGE_KEY,
   TRANSLATE_CALL_MESSAGE,
   FONT_SIZE_RANGE_MESSAGE,
-} from "./const";
+} from "./common/const";
 
 const hostName = window.location.hostname.split(".");
 const hostUrl = hostName[hostName.length - 2];
@@ -32,7 +33,7 @@ const deleteTranslatedElement = () => {
 };
 
 const renderTranslatedElementAndSetObserver = () => {
-  connectClosedCaptionTargetElementObserver();
+  connectClosedCaptionObserver();
 
   controller.translatedAndRender();
 };
@@ -53,7 +54,7 @@ const disconnectObserver = () => {
   observer.disconnect();
 };
 
-const connectClosedCaptionTargetElementObserver = () => {
+const connectClosedCaptionObserver = () => {
   const closedCaptionElement = document.querySelector(Dom[hostUrl].domAttrs);
 
   if (!closedCaptionElement) return;
@@ -61,7 +62,7 @@ const connectClosedCaptionTargetElementObserver = () => {
   connectObserver(closedCaptionElement);
 };
 
-const connectClosedCaptionObserver = () => {
+const connectClosedCaptionWrapperObserver = () => {
   const closedCaptionWrapperElement = document.querySelector(
     Dom[hostUrl].domWrapperAttrs
   ) as HTMLDivElement | null;
@@ -84,25 +85,20 @@ const disconnectClosedCaptionObserver = () => {
 };
 
 const initialSetRenderClosedCaption = async () => {
-  const { isChecked } = await Storage.getStorageValue<boolean>(
-    SWITCH_STORAGE_KEY
-  );
-
-  const { fontSize } = await Storage.getStorageValue<number | unknown>(
-    FONT_SIZE_STORAGE_KEY
-  );
+  const isChecked = await getSwitchValueInStorage();
+  const fontSize = await getFontSizeValueInStorage();
 
   if (fontSize && typeof fontSize === "number")
     changeFontSizeRangeElement(fontSize);
 
-  if (isChecked) connectClosedCaptionObserver();
+  if (isChecked) connectClosedCaptionWrapperObserver();
 };
 
 chrome.runtime.onMessage.addListener(
   (request: { message: string; data: unknown }) => {
     if (request.message === TRANSLATE_CALL_MESSAGE) {
       request.data
-        ? connectClosedCaptionObserver()
+        ? connectClosedCaptionWrapperObserver()
         : disconnectClosedCaptionObserver();
     }
 
