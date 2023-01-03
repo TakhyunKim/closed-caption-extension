@@ -28,17 +28,18 @@ class View {
     this.targetOfTranslatingElement = targetOfTranslatingElement;
   }
 
+  getTargetOfTranslatingElement() {
+    return this.targetOfTranslatingElement;
+  }
+
   getTextContent() {
     if (!this.targetOfTranslatingElement) return;
 
     const list = Array.from(this.targetOfTranslatingElement.children);
     let textContent = "";
 
-    if (
-      list.length === 0 &&
-      this.targetOfTranslatingElement.firstChild?.textContent
-    ) {
-      return this.targetOfTranslatingElement.firstChild.textContent;
+    if (list.length === 0) {
+      return this.targetOfTranslatingElement.textContent;
     }
 
     list.forEach((element) => {
@@ -47,6 +48,8 @@ class View {
 
       textContent += `${element.textContent} `;
     });
+
+    textContent = textContent.trim();
 
     return textContent;
   }
