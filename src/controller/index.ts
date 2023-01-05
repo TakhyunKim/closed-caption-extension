@@ -2,6 +2,7 @@ import View from "../view";
 import Model from "../model";
 
 import { sendMessageToBackgroundTranslatingText } from "../api/message";
+
 class Controller {
   _view: View;
   _model: Model;
@@ -46,7 +47,7 @@ class Controller {
       this._view.render.call(this._view, translatedText, fontSize);
     };
 
-    sendMessageToBackgroundTranslatingText(
+    await sendMessageToBackgroundTranslatingText(
       textContent,
       deletePrevElementEndRender
     );
