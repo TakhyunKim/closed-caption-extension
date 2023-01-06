@@ -6,10 +6,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: yarn install
+
       - uses: ArtiomTr/jest-coverage-report-action@v2
         id: coverage
         with:
+          package-manager: yarn
+          test-script: yarn test
           output: report-markdown
+
       - uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: ${{ steps.coverage.outputs.report }}
