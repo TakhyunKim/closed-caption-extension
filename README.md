@@ -37,6 +37,20 @@ I'm going to support more sites! 🧑‍💻
 
 <img width="100%" alt="my extension architecture" src="./public/assets/readme/architecture.png" />
 
-## How to update website?
+## 🧐 How to update website?
 
 1. Add the site URL that you add to the content_scripts matched array in the manifest.
+
+2. add the closed caption dom attribute to Dom info
+
+### 🤔 how to select dom attribute?
+
+Two pieces of information need to be added `domWrapperAttrs` and `domAttrs`.
+
+First, `domAttrs` means the class,<br />
+id of the upper tag surrounding the dom showing subtitles on the screen.
+
+This is the information of the tag surrounding the two doms<br />
+with the caption-visual-line class as shown in the image below.
+
+<img width="100%" alt="dom attr example" src="./public/assets/readme/dom-attr-example.png" />
