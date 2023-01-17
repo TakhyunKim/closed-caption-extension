@@ -54,3 +54,11 @@ This is the information of the tag surrounding the two doms<br />
 with the caption-visual-line class as shown in the image below.
 
 <img width="100%" alt="dom attr example" src="./public/assets/readme/dom-attr-example.png" />
+
+Second, `domWrapperAttrs` means the upper dom of domAttrs.<br />
+However, domWrapperAttrs must be specified as the dom where the change occurs <br />
+when the subtitle changes.
+
+<img width="100%" alt="dom attr example" src="./public/assets/readme/dom-wrapper-attr-example.png" />
+
+If you put these two information and added website information to the manifest, please see the contents below.
