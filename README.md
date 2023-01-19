@@ -62,3 +62,5 @@ when the subtitle changes.
 <img width="100%" alt="dom attr example" src="./public/assets/readme/dom-wrapper-attr-example.png" />
 
 If you put these two information and added website information to the manifest, please see the contents below.
+
+### how to develop in local
