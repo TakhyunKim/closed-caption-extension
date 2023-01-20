@@ -63,4 +63,8 @@ when the subtitle changes.
 
 If you put these two information and added website information to the manifest, please see the contents below.
 
-### how to develop in local
+### 🤔 how to develop in local
+
+1. Form the build file through the yarn build script.
+
+2. To register an extension, go to the Development of an extension page.
