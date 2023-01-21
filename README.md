@@ -68,3 +68,13 @@ If you put these two information and added website information to the manifest, 
 1. Form the build file through the yarn build script.
 
 2. To register an extension, go to the Development of an extension page.
+   <img width="100%" alt="develop extension page" src="./public/assets/readme/develop-extension.png" />
+
+3. Apply build file to extension page.
+   <img width="100%" alt="select dist file" src="./public/assets/readme/select-dist-file.png" />
+
+4. Activate the added Closed Caption.
+
+5. Test the active extension at each site.
+
+6. If there is any change, please refresh the extension developer page and test it again.
