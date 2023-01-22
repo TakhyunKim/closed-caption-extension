@@ -78,3 +78,7 @@ If you put these two information and added website information to the manifest, 
 5. Test the active extension at each site.
 
 6. If there is any change, please refresh the extension developer page and test it again.
+
+### 🔖 Reference
+
+- [chrome extension guide](https://developer.chrome.com/docs/extensions/mv3/devguide/)
