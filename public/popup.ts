@@ -62,6 +62,17 @@ rangeInputElement.addEventListener("input", async () => {
   await sendMessageToContentRangeValue(rangeValue);
 });
 
+chrome.runtime.onMessage.addListener(async (request: { message: string }) => {
+  if (request.message === "toggle-translate") {
+    const isChecked = translationElement.checked;
+
+    translationElement.checked = !isChecked;
+
+    await setSwitchValueInStorage(!isChecked);
+    await sendMessageToContentIsActiveTranslation(!isChecked);
+  }
+});
+
 // when popup open set default switch state
 setInitialSwitchState();
 setInitialFontRangeSlider();
