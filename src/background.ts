@@ -27,3 +27,13 @@ chrome.runtime.onMessage.addListener(({ message, payload }, _, response) => {
 
   return true;
 });
+
+chrome.commands.onCommand.addListener(async function (command) {
+  switch (command) {
+    case "active-translate":
+      chrome.runtime.sendMessage({ message: "toggle-translate" });
+      break;
+    default:
+      console.log(`Command ${command} not found`);
+  }
+});
