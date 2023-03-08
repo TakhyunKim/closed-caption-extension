@@ -1,6 +1,6 @@
 {
   "name": "closed-caption-extension",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "popup.js",
   "repository": "https://github.com/TakhyunKim/Closed-caption-korean.git",
   "author": "Takhyun Kim <kimkih1218@gmail.com>",
