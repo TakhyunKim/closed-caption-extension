@@ -1,3 +1,44 @@
+.popup_wrapper {
+  display: flex;
+  justify-content: center;
+  height: 165px;
+  max-height: 165px;
+  margin: -10px;
+  background-color: #21211f;
+  color: #ffffff;
+}
+
+.translate_controller {
+  height: 100%;
+  max-height: 165px;
+  overflow-y: hidden;
+  background-color: #21211f;
+}
+
+.language_controller {
+  height: 100%;
+  max-height: 165px;
+  overflow-y: scroll;
+  background-color: #21211f;
+  margin-left: 10px;
+}
+
+.language_button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin: 0;
+  color: #ffffff;
+}
+
+.language_button:hover {
+  color: #7b7b7b;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -66,8 +107,20 @@ input:checked + .slider:before {
   width: 200px;
   height: 25px;
   padding: 15px;
-  margin: -8px;
-  background: #21211f;
+}
+
+.language_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  height: 25px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.language_wrapper:hover {
+  background-color: #7b7b7b;
 }
 
 .container {
@@ -115,4 +168,12 @@ input[type="range"]::-webkit-slider-runnable-track {
   box-shadow: none;
   border: none;
   background: transparent;
+}
+
+.block {
+  display: block;
+}
+
+.hidden {
+  display: none;
 }
