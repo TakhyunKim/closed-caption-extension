@@ -3,6 +3,8 @@ import Model from "../model";
 
 import { sendMessageToBackgroundTranslatingText } from "../api/message";
 
+import type { LanguageCode } from "../common/language.types";
+
 class Controller {
   _view: View;
   _model: Model;
@@ -34,6 +36,7 @@ class Controller {
     const isSameTargetElementAndText = this.checkIsSameTargetElementAndText();
 
     const textContent = this._view.getTextContent();
+    const translatedLanguageCode = this._model.getLanguageCode();
 
     if (!textContent || isSameTargetElementAndText) return;
 
@@ -49,6 +52,7 @@ class Controller {
 
     await sendMessageToBackgroundTranslatingText(
       textContent,
+      translatedLanguageCode,
       deletePrevElementEndRender
     );
   }
@@ -56,6 +60,10 @@ class Controller {
   changeFontSizeRangeElement(value: number) {
     this._model.setFontSize(value);
     this._view.setClosedCaptionFontSize(value);
+  }
+
+  changeLanguageCodeElement(languageCode: LanguageCode) {
+    this._model.setLanguageCode(languageCode);
   }
 
   deleteTranslatedElement() {
