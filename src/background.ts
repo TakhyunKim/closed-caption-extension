@@ -5,10 +5,9 @@ const replaceNewLineSequenceToSpace = (text: string) => {
 chrome.runtime.onMessage.addListener(({ message, payload }, _, response) => {
   if (message === "translate") {
     const translateTargetText = encodeURIComponent(
-      replaceNewLineSequenceToSpace(payload)
+      replaceNewLineSequenceToSpace(payload.translateTargetText)
     );
-    const apiURL = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=${translateTargetText}`;
-
+    const apiURL = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${payload.languageCode}&dt=t&q=${translateTargetText}`;
     fetch(apiURL)
       .then((res) => {
         if (res.status !== 200) {
