@@ -1,9 +1,13 @@
+import type { LanguageCode } from "../common/language.types";
+
 class Model {
   fontSize: number;
+  languageCode: LanguageCode;
   targetOfTranslatingText: string;
 
   constructor() {
     this.fontSize = 25;
+    this.languageCode = "ko";
     this.targetOfTranslatingText = "";
   }
 
@@ -21,6 +25,14 @@ class Model {
 
   getFontSize() {
     return this.fontSize;
+  }
+
+  setLanguageCode(languageCode: LanguageCode) {
+    this.languageCode = languageCode;
+  }
+
+  getLanguageCode() {
+    return this.languageCode;
   }
 }
 

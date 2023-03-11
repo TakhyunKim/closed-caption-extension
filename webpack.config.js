@@ -59,6 +59,7 @@ module.exports = {
           globOptions: { ignore: ["**/readme/**"] },
         },
         { from: "./public/manifest.json", to: "./manifest.json" },
+        { from: "./public/popup.css", to: "./popup.css" },
       ],
     }),
     new MiniCssExtractPlugin({ filename: "popup.css" }),

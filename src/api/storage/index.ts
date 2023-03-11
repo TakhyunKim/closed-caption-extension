@@ -30,9 +30,25 @@ const setFontSizeValueInStorage = async (fontSize: number) => {
   await Storage.setStorageValue(FONT_SIZE_STORAGE_KEY, fontSize);
 };
 
+const getTranslatedTargetLanguageInStorage = async () => {
+  const { language } = await Storage.getStorageValue<string | unknown>(
+    "language"
+  );
+
+  if (typeof language !== "string") return;
+
+  return language;
+};
+
+const setTranslatedTargetLanguageInStorage = async (language: string) => {
+  await Storage.setStorageValue("language", language);
+};
+
 export {
   getSwitchValueInStorage,
   setSwitchValueInStorage,
   getFontSizeValueInStorage,
   setFontSizeValueInStorage,
+  getTranslatedTargetLanguageInStorage,
+  setTranslatedTargetLanguageInStorage,
 };

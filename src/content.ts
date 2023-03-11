@@ -6,12 +6,17 @@ import Dom from "./Dom";
 import {
   getSwitchValueInStorage,
   getFontSizeValueInStorage,
+  getTranslatedTargetLanguageInStorage,
 } from "./api/storage";
 
 import {
   TRANSLATE_CALL_MESSAGE,
   FONT_SIZE_RANGE_MESSAGE,
+  CHANGE_LANGUAGE_MESSAGE,
 } from "./common/const";
+import { isLanguage } from "./common/isLanguage";
+
+import type { LanguageCode } from "./common/language.types";
 
 const hostName = window.location.hostname.split(".");
 const hostUrl = hostName[hostName.length - 2];
@@ -22,6 +27,10 @@ const controller = new Controller(view, model);
 
 const changeFontSizeRangeElement = (value: number) => {
   controller.changeFontSizeRangeElement(value);
+};
+
+const changeTranslatedTargetLanguage = (languageCode: LanguageCode) => {
+  controller.changeLanguageCodeElement(languageCode);
 };
 
 const renderTranslatedElement = () => {
@@ -87,11 +96,18 @@ const disconnectClosedCaptionObserver = () => {
 const initialSetRenderClosedCaption = async () => {
   const isChecked = await getSwitchValueInStorage();
   const fontSize = await getFontSizeValueInStorage();
+  const translatedTargetLanguage =
+    (await getTranslatedTargetLanguageInStorage()) ?? "ko";
+  const languageCode = isLanguage(translatedTargetLanguage)
+    ? translatedTargetLanguage
+    : "ko";
 
   if (fontSize && typeof fontSize === "number")
     changeFontSizeRangeElement(fontSize);
 
   if (isChecked) connectClosedCaptionWrapperObserver();
+
+  changeTranslatedTargetLanguage(languageCode);
 };
 
 chrome.runtime.onMessage.addListener(
@@ -100,6 +116,10 @@ chrome.runtime.onMessage.addListener(
       request.data
         ? connectClosedCaptionWrapperObserver()
         : disconnectClosedCaptionObserver();
+    }
+
+    if (request.message === CHANGE_LANGUAGE_MESSAGE) {
+      controller.changeLanguageCodeElement(request.data as LanguageCode);
     }
 
     if (request.message === FONT_SIZE_RANGE_MESSAGE) {

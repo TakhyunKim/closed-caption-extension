@@ -1,6 +1,13 @@
+import type { LanguageCode } from "../../common/language.types";
+
+type ChromeAPIPayload = {
+  translateTargetText: string;
+  languageCode: LanguageCode;
+};
+
 export type ChromeAPIRequest = {
   message: string;
-  payload: string;
+  payload: ChromeAPIPayload;
 };
 
 export type ChromeAPIResponse = {
@@ -19,7 +26,7 @@ const Message = {
 
   async sendMessageToBackground(
     message: string,
-    payload: string,
+    payload: ChromeAPIPayload,
     callback: (response: ChromeAPIResponse) => void
   ) {
     chrome.runtime.sendMessage<ChromeAPIRequest, ChromeAPIResponse>(
