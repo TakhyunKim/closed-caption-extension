@@ -1,8 +1,8 @@
 {
-  "name": "closed caption korean",
+  "name": "closed caption - dual subtitle viewer",
   "manifest_version": 3,
-  "version": "1.5.0",
-  "description": "Extension for viewing Korean subtitles and existing subtitles together",
+  "version": "2.0.0",
+  "description": "Extension for viewing another language subtitles and existing subtitles together",
   "background": {
     "service_worker": "background.js"
   },
