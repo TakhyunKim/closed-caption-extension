@@ -1,17 +1,21 @@
 <div align="center">
    <img width="40%" alt="chrome tab" src="./public/assets/readme/kitty.svg" />
    <h1>Closed Caption Extension</h1>
-   <strong>Let's check English and Korean subtitles together<br /> and understand and enjoy the contents more easily and quickly</strong>
+   <strong>Let's check English and another language subtitles together<br /> and understand and enjoy the contents more easily and quickly</strong>
    <h5>Break down the wall of one-click language</h5>
 </div>
 
-## 🔖 closed caption korean extension
+## 🔖 closed caption extension
 
-> Closed caption Korean is an extension program that helps<br />
-> you see English and Korean subtitles together. 🧑‍💻
+> Closed caption is an extension program that helps<br />
+> you see English and another subtitles together. 🧑‍💻
 
 If you look at only one translated caption or if you look at the existing subtitles,<br />
 there are many difficulties in watching, such as incorrect translation.
+
+<div align="center">
+   <img width="70%" alt="extension example" src="./public/assets/readme/frontend-masters.png" />
+</div>
 
 ## 🚀 Sites where this chrome extensions are available
 
