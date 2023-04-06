@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener(({ message, payload }, _, response) => {
     const translateTargetText = encodeURIComponent(
       replaceNewLineSequenceToSpace(payload.translateTargetText)
     );
-    const apiURL = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${payload.languageCode}&dt=t&q=${translateTargetText}`;
+    const apiURL = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${payload.languageCode}&dt=t&q=${translateTargetText}`;
     fetch(apiURL)
       .then((res) => {
         if (res.status !== 200) {
