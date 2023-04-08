@@ -43,6 +43,7 @@ const deleteTranslatedElement = () => {
 
 const renderTranslatedElementAndSetObserver = () => {
   connectClosedCaptionObserver();
+  connectClosedCaptionSubObserver();
 
   controller.translatedAndRender();
 };
@@ -69,6 +70,18 @@ const connectClosedCaptionObserver = () => {
   if (!closedCaptionElement) return;
 
   connectObserver(closedCaptionElement);
+};
+
+const connectClosedCaptionSubObserver = () => {
+  const domAttrsSub = Dom[hostUrl].domAttrsSub;
+
+  if (!domAttrsSub) return;
+
+  const closedCaptionSubElement = document.querySelector(domAttrsSub);
+
+  if (!closedCaptionSubElement) return;
+
+  connectObserver(closedCaptionSubElement);
 };
 
 const connectClosedCaptionWrapperObserver = () => {
