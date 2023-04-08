@@ -36,7 +36,8 @@
         "*://frontendmasters.com/*",
         "*://www.udemy.com/*",
         "*://www.youtube.com/*",
-        "*://epicreact.dev/*"
+        "*://epicreact.dev/*",
+        "*://www.ted.com/*"
       ],
       "js": ["content.js"]
     }
