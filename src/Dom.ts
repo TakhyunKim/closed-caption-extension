@@ -36,6 +36,10 @@ const Dom: TRANSLATING_DOM_INFO = {
     domAttrs: ".css-16n0hsa",
     domAttrsSub: ".css-82uonn",
   },
+  netflix: {
+    domWrapperAttrs: ".player-timedtext",
+    domAttrs: ".player-timedtext-text-container",
+  },
 };
 
 export default Dom;

@@ -37,7 +37,8 @@
         "*://www.udemy.com/*",
         "*://www.youtube.com/*",
         "*://epicreact.dev/*",
-        "*://www.ted.com/*"
+        "*://www.ted.com/*",
+        "*://www.netflix.com/*"
       ],
       "js": ["content.js"]
     }
