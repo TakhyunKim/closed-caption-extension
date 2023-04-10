@@ -3,6 +3,7 @@ interface DOM_ATTRS {
   domWrapperAttrs: string;
   // The DOM to be translated attribute (ex: class, id ...)
   domAttrs: string;
+  domAttrsSub?: string;
 }
 
 interface TRANSLATING_DOM_INFO {
@@ -29,6 +30,15 @@ const Dom: TRANSLATING_DOM_INFO = {
   epicreact: {
     domWrapperAttrs: ".bmpui-ui-subtitle-overlay",
     domAttrs: ".bmpui-ui-subtitle-label",
+  },
+  ted: {
+    domWrapperAttrs: "#ted-player",
+    domAttrs: ".css-16n0hsa",
+    domAttrsSub: ".css-82uonn",
+  },
+  netflix: {
+    domWrapperAttrs: ".player-timedtext",
+    domAttrs: ".player-timedtext-text-container",
   },
 };
 

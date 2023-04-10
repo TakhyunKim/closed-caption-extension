@@ -37,6 +37,12 @@ class Controller {
 
     const textContent = this._view.getTextContent();
     const translatedLanguageCode = this._model.getLanguageCode();
+    const translatedWrapperElement = this._view.getTranslatedWrapperElement();
+
+    if (translatedWrapperElement && !textContent) {
+      this._view.deleteClosedCaptionElement();
+      return;
+    }
 
     if (!textContent || isSameTargetElementAndText) return;
 

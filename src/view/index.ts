@@ -8,6 +8,15 @@ class View {
   }
 
   render(closedCaptionText: string, fontSize: number) {
+    this.domAttr === ".player-timedtext-text-container"
+      ? this.renderToBody(closedCaptionText, fontSize)
+      : this.renderToTargetOfTranslatingElement(closedCaptionText, fontSize);
+  }
+
+  renderToTargetOfTranslatingElement(
+    closedCaptionText: string,
+    fontSize: number
+  ) {
     if (!this.targetOfTranslatingElement) return;
 
     this.setClosedCaptionStyle(this.targetOfTranslatingElement);
@@ -18,6 +27,29 @@ class View {
     );
 
     this.targetOfTranslatingElement.appendChild(newClosedCaptionElement);
+  }
+
+  renderToBody(closedCaptionText: string, fontSize: number) {
+    const targetOfTranslatingElement = document.querySelector(".watch-video");
+
+    if (!this.targetOfTranslatingElement || !targetOfTranslatingElement) return;
+
+    this.setClosedCaptionStyle(this.targetOfTranslatingElement);
+
+    const { height, top } =
+      this.targetOfTranslatingElement.getBoundingClientRect();
+
+    const newClosedCaptionElement = this.createClosedCaptionTextElement(
+      closedCaptionText,
+      fontSize
+    );
+
+    const newClosedCaptionElementWrapper =
+      this.createClosedCaptionTextElementWrapper(height + top);
+
+    newClosedCaptionElementWrapper.appendChild(newClosedCaptionElement);
+
+    targetOfTranslatingElement.appendChild(newClosedCaptionElementWrapper);
   }
 
   setTargetOfTranslatingElement() {
@@ -78,6 +110,22 @@ class View {
     return newClosedCaptionElement;
   }
 
+  createClosedCaptionTextElementWrapper(position: number) {
+    const newClosedCaptionElementWrapper = document.createElement("div");
+
+    newClosedCaptionElementWrapper.setAttribute("id", "text-track-wrapper");
+
+    newClosedCaptionElementWrapper.style.display = "flex";
+    newClosedCaptionElementWrapper.style.justifyContent = "center";
+    newClosedCaptionElementWrapper.style.alignItems = "center";
+    newClosedCaptionElementWrapper.style.position = "absolute";
+    newClosedCaptionElementWrapper.style.top = `${position}px`;
+    newClosedCaptionElementWrapper.style.width = "100%";
+    newClosedCaptionElementWrapper.style.height = "auto";
+
+    return newClosedCaptionElementWrapper;
+  }
+
   setClosedCaptionFontSize(fontSize: number) {
     const targetClosedCaptionElement = document.getElementById(
       "text-track"
@@ -96,14 +144,30 @@ class View {
     return translatedElement;
   }
 
+  getTranslatedWrapperElement() {
+    const translatedElement = document.getElementById(
+      "text-track-wrapper"
+    ) as HTMLDivElement | null;
+
+    return translatedElement;
+  }
+
   deleteClosedCaptionElement() {
     const targetClosedCaptionElement = document.getElementById(
       "text-track"
     ) as HTMLDivElement | null;
 
-    if (!targetClosedCaptionElement) return;
+    const targetClosedCaptionWrapperElement = document.getElementById(
+      "text-track-wrapper"
+    ) as HTMLDivElement | null;
 
-    targetClosedCaptionElement.remove();
+    if (targetClosedCaptionElement) {
+      targetClosedCaptionElement.remove();
+    }
+
+    if (targetClosedCaptionWrapperElement) {
+      targetClosedCaptionWrapperElement.remove();
+    }
   }
 }
 
