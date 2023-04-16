@@ -20,7 +20,6 @@
   max-height: 165px;
   overflow-y: scroll;
   background-color: #21211f;
-  margin-left: 10px;
 }
 
 .language_button {
@@ -176,4 +175,44 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 .hidden {
   display: none;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  padding-left: 15px;
+  padding-top: 25px;
+  background-color: #282727;
+  margin: -10px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.bug {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  overflow: hidden;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.bug:hover {
+  background-color: #7b7b7b;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.bug_image {
+  width: 15px;
+  height: 15px;
+  color: #ffffff;
+  text-decoration: none;
 }
