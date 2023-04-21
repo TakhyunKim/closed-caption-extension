@@ -52,6 +52,7 @@ const observer = new MutationObserver(renderTranslatedElementAndSetObserver);
 
 const connectObserver = (element: Element) => {
   const observerOptions: MutationObserverInit = {
+    subtree: true,
     childList: true,
     attributes: true,
     characterData: true,
@@ -142,3 +143,4 @@ chrome.runtime.onMessage.addListener(
 );
 
 initialSetRenderClosedCaption();
+connectClosedCaptionSubObserver();
