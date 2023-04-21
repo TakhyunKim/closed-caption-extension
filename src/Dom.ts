@@ -22,6 +22,7 @@ const Dom: TRANSLATING_DOM_INFO = {
   udemy: {
     domWrapperAttrs: ".captions-display--captions-container--1-aQJ",
     domAttrs: ".captions-display--captions-cue-text--ECkJu",
+    domAttrsSub: ".curriculum-item-view--content--3ABmp",
   },
   youtube: {
     domWrapperAttrs: ".ytp-caption-window-container",
