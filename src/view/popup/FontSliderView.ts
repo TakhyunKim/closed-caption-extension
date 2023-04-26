@@ -3,7 +3,7 @@ class FontSliderView {
 
   constructor() {
     this.sliderElement = document.getElementById(
-      "font-range"
+      "font-size-range"
     ) as HTMLInputElement;
   }
 

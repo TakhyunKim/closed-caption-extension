@@ -7,7 +7,7 @@ const DEFAULT_RANGE_MAX = "30";
 describe("Font Slider View Test", () => {
   beforeEach(() => {
     document.body.innerHTML = `
-      <input type="range" id="font-range" min=${DEFAULT_RANGE_MIN} max=${DEFAULT_RANGE_MAX} value=${DEFAULT_RANGE_VALUE} />
+      <input type="range" id="font-size-range" min=${DEFAULT_RANGE_MIN} max=${DEFAULT_RANGE_MAX} value=${DEFAULT_RANGE_VALUE} />
     `;
   });
 
@@ -17,7 +17,7 @@ describe("Font Slider View Test", () => {
     const FontSliderViewElement = FontSliderViewInstance.getFontSliderElement();
 
     const FontRangeElement = document.getElementById(
-      "font-range"
+      "font-size-range"
     ) as HTMLInputElement;
 
     expect(FontRangeElement).toBe(FontSliderViewElement);
