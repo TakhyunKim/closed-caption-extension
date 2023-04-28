@@ -19,7 +19,6 @@ class LanguageSelectView {
   };
 
   public toggleLanguageSelectorDisplay = () => {
-    // toggle 이 되면 이거 체크
     this.languageSelector.classList.toggle("hidden");
   };
 
