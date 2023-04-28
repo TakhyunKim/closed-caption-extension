@@ -70,6 +70,8 @@ class Controller {
 
   changeLanguageCodeElement(languageCode: LanguageCode) {
     this._model.setLanguageCode(languageCode);
+    this._view.deleteClosedCaptionElement();
+    this.translatedAndRender();
   }
 
   deleteTranslatedElement() {
