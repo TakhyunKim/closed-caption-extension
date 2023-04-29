@@ -115,7 +115,7 @@ class PopupController {
   public setInitialLanguageSelectorAndButton = async () => {
     const languageCode = await this.popupModel.getLanguageCode();
 
-    this.languageSelectorView.toggleCheckLanguage(languageCode);
+    this.languageSelectorView.setSelectedElementStyle(languageCode);
     this.languageSelectorButtonView.setLanguageSelectorButtonText(languageCode);
 
     await sendMessageToContentChangedLanguage(languageCode);
