@@ -9,9 +9,14 @@ class LanguageSelectView {
     ) as HTMLDivElement;
   }
 
-  private updateSelectedLanguageStyle = (selectedElement: SVGElement) => {
-    selectedElement.classList.toggle("hidden");
-    selectedElement.classList.toggle("selected");
+  private hiddenPrevSelectedElement = () => {
+    const prevSelectedElement =
+      this.languageSelector.querySelector(".selected");
+
+    if (!prevSelectedElement) return;
+
+    prevSelectedElement.classList.add("hidden");
+    prevSelectedElement.classList.remove("selected");
   };
 
   public getLanguageSelector = () => {
@@ -22,18 +27,20 @@ class LanguageSelectView {
     this.languageSelector.classList.toggle("hidden");
   };
 
-  public toggleCheckLanguage = (language: LanguageCode) => {
+  public setSelectedElementStyle = (language: LanguageCode) => {
     const targetLanguageElement = document.querySelector(
       `[data-lang="${language}"]`
     ) as HTMLDivElement;
     const targetLanguageSvgElement = targetLanguageElement
       .children[1] as SVGElement;
 
-    this.updateSelectedLanguageStyle(targetLanguageSvgElement);
+    targetLanguageSvgElement.classList.remove("hidden");
+    targetLanguageSvgElement.classList.add("selected");
   };
 
   public updateLanguage = (language: LanguageCode) => {
-    this.toggleCheckLanguage(language);
+    this.hiddenPrevSelectedElement();
+    this.setSelectedElementStyle(language);
     this.toggleLanguageSelectorDisplay();
   };
 }
