@@ -142,9 +142,10 @@ describe("Language Selector View Test", () => {
     expect(selectedLanguageElement).toBe(targetLanguageSvgElement);
   });
 
-  it("Checking when to change from the default KO language to the EN language", () => {
+  it("Checking when to change from the default KO language to the EN language and DE", () => {
     const DEFAULT_LANGUAGE = "ko";
-    const CHANGED_LANGUAGE = "en";
+    const EN_LANGUAGE = "en";
+    const DE_LANGUAGE = "de";
 
     const LanguageSelectorViewInstance = new LanguageSelectView();
 
@@ -163,18 +164,34 @@ describe("Language Selector View Test", () => {
     );
 
     /** Check value for changed EN */
-    LanguageSelectorViewInstance.updateLanguage(CHANGED_LANGUAGE);
+    LanguageSelectorViewInstance.updateLanguage(EN_LANGUAGE);
 
-    const selectedLanguageElementOfChangedValue =
+    const selectedLanguageElementOfChangedEnValue =
       document.querySelector(".selected");
-    const changedTargetLanguageElement = document.querySelector(
-      `[data-lang="${CHANGED_LANGUAGE}"]`
+    const changedTargetEnLanguageElement = document.querySelector(
+      `[data-lang="${EN_LANGUAGE}"]`
     ) as HTMLDivElement;
-    const changedTargetLanguageSvgElement =
-      changedTargetLanguageElement.children[1];
+    const changedTargetEnLanguageSvgElement =
+      changedTargetEnLanguageElement.children[1];
 
-    expect(changedTargetLanguageSvgElement).toBe(
-      selectedLanguageElementOfChangedValue
+    expect(changedTargetEnLanguageSvgElement).toBe(
+      selectedLanguageElementOfChangedEnValue
+    );
+
+    LanguageSelectorViewInstance.updateLanguage(DE_LANGUAGE);
+
+    const selectedLanguageElements = document.querySelectorAll(".selected");
+    const selectedLanguageElementOfChangedDeValue =
+      document.querySelector(".selected");
+    const changedTargetDeLanguageElement = document.querySelector(
+      `[data-lang="${DE_LANGUAGE}"]`
+    ) as HTMLDivElement;
+    const changedTargetDeLanguageSvgElement =
+      changedTargetDeLanguageElement.children[1];
+
+    expect(selectedLanguageElements.length).toBe(1);
+    expect(changedTargetDeLanguageSvgElement).toBe(
+      selectedLanguageElementOfChangedDeValue
     );
   });
 });
