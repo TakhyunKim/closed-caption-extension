@@ -34,17 +34,11 @@ class PopupController {
 
     this.fontSliderView
       .getFontSliderElement()
-      .addEventListener(
-        "input",
-        this.updateFontSliderAndSetLocalStorageAndSendMessage
-      );
+      .addEventListener("input", this.updateFontSliderAndSendMessage);
 
     this.translatingSwitchView
       .getTranslatingSwitchElement()
-      .addEventListener(
-        "click",
-        this.updateTranslateLocalStorageAndSendMessage
-      );
+      .addEventListener("click", this.updateTranslateAndSendMessage);
 
     this.languageSelectorButtonView
       .getLanguageSelectorButtonElement()
@@ -55,13 +49,10 @@ class PopupController {
 
     this.languageSelectorView
       .getLanguageSelector()
-      .addEventListener(
-        "click",
-        this.updateSelectedLanguageAndSetLocalStorageAndSendMessage
-      );
+      .addEventListener("click", this.updateSelectedLanguageAndSendMessage);
   }
 
-  private updateFontSliderAndSetLocalStorageAndSendMessage = async () => {
+  private updateFontSliderAndSendMessage = async () => {
     const rangeValue = Number(this.fontSliderView.getFontSliderValue());
 
     this.fontSliderView.updateFontSlider(rangeValue);
@@ -71,7 +62,7 @@ class PopupController {
     await sendMessageToContentRangeValue(rangeValue);
   };
 
-  private updateTranslateLocalStorageAndSendMessage = async () => {
+  private updateTranslateAndSendMessage = async () => {
     const isChecked = this.translatingSwitchView.getTranslatingSwitchValue();
 
     await this.popupModel.setSwitchValue(isChecked);
@@ -79,9 +70,7 @@ class PopupController {
     await sendMessageToContentIsActiveTranslation(isChecked);
   };
 
-  private updateSelectedLanguageAndSetLocalStorageAndSendMessage = async (
-    event: MouseEvent
-  ) => {
+  private updateSelectedLanguageAndSendMessage = async (event: MouseEvent) => {
     const target = event.target as HTMLDivElement;
     const selectedLanguage = target.dataset.lang;
 
