@@ -7,6 +7,12 @@ import PopupModel from "../src/model/popup/PopupModel";
 
 import PopupController from "../src/controller/popup/PopupController";
 
+import {
+  sendMessageToContentRangeValue,
+  sendMessageToContentChangedLanguage,
+  sendMessageToContentIsActiveTranslation,
+} from "../src/api/message";
+
 const fontSliderView = new FontSliderView();
 const languageSelectorView = new LanguageSelectView();
 const translatingSwitchView = new TranslatingSwitchView();
@@ -19,9 +25,12 @@ const popupController = new PopupController(
   languageSelectorView,
   translatingSwitchView,
   languageSelectorButtonView,
-  popupModel
+  popupModel,
+  sendMessageToContentIsActiveTranslation,
+  sendMessageToContentRangeValue,
+  sendMessageToContentChangedLanguage
 );
 
-popupController.setInitialSwitchState();
 popupController.setInitialFontRangeSlider();
+popupController.setInitialSwitchState();
 popupController.setInitialLanguageSelectorAndButton();
