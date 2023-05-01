@@ -5,12 +5,7 @@ import LanguageSelectorButtonView from "../../view/popup/LanguageSelectorButtonV
 
 import PopupModel from "../../model/popup/PopupModel";
 
-import {
-  sendMessageToContentRangeValue,
-  sendMessageToContentChangedLanguage,
-  sendMessageToContentIsActiveTranslation,
-} from "../../api/message";
-import { isLanguage } from "../../common/isLanguage";
+import type { LanguageCode } from "../../common/language.types";
 
 class PopupController {
   fontSliderView: FontSliderView;
@@ -19,12 +14,20 @@ class PopupController {
   languageSelectorButtonView: LanguageSelectorButtonView;
   popupModel: PopupModel;
 
+  switchCallback: (isChecked: boolean) => Promise<void>;
+  fontSliderCallback: (fontSize: number) => Promise<void>;
+  languageSelectorCallback: (languageCode: LanguageCode) => Promise<void>;
+
   constructor(
     _fontSliderView: FontSliderView,
     _languageSelectorView: LanguageSelectorView,
     _translatingSwitchView: TranslatingSwitchView,
     _languageSelectorButtonView: LanguageSelectorButtonView,
-    _popupModel: PopupModel
+    _popupModel: PopupModel,
+
+    _switchCallback: (isChecked: boolean) => Promise<void>,
+    _fontSliderCallback: (fontSize: number) => Promise<void>,
+    _languageSelectorCallback: (languageCode: LanguageCode) => Promise<void>
   ) {
     this.fontSliderView = _fontSliderView;
     this.languageSelectorView = _languageSelectorView;
@@ -32,13 +35,21 @@ class PopupController {
     this.languageSelectorButtonView = _languageSelectorButtonView;
     this.popupModel = _popupModel;
 
+    this.switchCallback = _switchCallback;
+    this.fontSliderCallback = _fontSliderCallback;
+    this.languageSelectorCallback = _languageSelectorCallback;
+
     this.fontSliderView
       .getFontSliderElement()
-      .addEventListener("input", this.updateFontSliderAndSendMessage);
+      .addEventListener("input", () =>
+        this.updateFontSlider(this.fontSliderCallback)
+      );
 
     this.translatingSwitchView
       .getTranslatingSwitchElement()
-      .addEventListener("click", this.updateTranslateAndSendMessage);
+      .addEventListener("click", () =>
+        this.updateTranslate(this.switchCallback)
+      );
 
     this.languageSelectorButtonView
       .getLanguageSelectorButtonElement()
@@ -49,56 +60,58 @@ class PopupController {
 
     this.languageSelectorView
       .getLanguageSelector()
-      .addEventListener("click", this.updateSelectedLanguageAndSendMessage);
+      .addEventListener("click", (event) =>
+        this.updateSelectedLanguage(event, this.languageSelectorCallback)
+      );
   }
 
-  private updateFontSliderAndSendMessage = async () => {
+  private updateFontSlider = async (
+    callback: (fontSize: number) => Promise<void>
+  ) => {
     const rangeValue = Number(this.fontSliderView.getFontSliderValue());
-
     this.fontSliderView.updateFontSlider(rangeValue);
-
     await this.popupModel.setFontSize(rangeValue);
 
-    await sendMessageToContentRangeValue(rangeValue);
+    await callback(rangeValue);
   };
 
-  private updateTranslateAndSendMessage = async () => {
+  private updateTranslate = async (
+    callback: (isChecked: boolean) => Promise<void>
+  ) => {
     const isChecked = this.translatingSwitchView.getTranslatingSwitchValue();
-
     await this.popupModel.setSwitchValue(isChecked);
 
-    await sendMessageToContentIsActiveTranslation(isChecked);
+    await callback(isChecked);
   };
 
-  private updateSelectedLanguageAndSendMessage = async (event: MouseEvent) => {
+  private updateSelectedLanguage = async (
+    event: MouseEvent,
+    callback: (languageCode: LanguageCode) => Promise<void>
+  ) => {
     const target = event.target as HTMLDivElement;
-    const selectedLanguage = target.dataset.lang;
-
-    if (!selectedLanguage || !isLanguage(selectedLanguage)) return;
+    const selectedLanguage = target.dataset.lang as LanguageCode;
 
     this.languageSelectorButtonView.setLanguageSelectorButtonText(
       selectedLanguage
     );
     this.languageSelectorView.updateLanguage(selectedLanguage);
-
     await this.popupModel.setLanguageCode(selectedLanguage);
 
-    await sendMessageToContentChangedLanguage(selectedLanguage);
+    await callback(selectedLanguage);
   };
 
   public setInitialSwitchState = async () => {
     const isChecked = await this.popupModel.getSwitchValue();
     this.translatingSwitchView.setTranslatingSwitchValue(isChecked);
 
-    await sendMessageToContentIsActiveTranslation(isChecked);
+    await this.switchCallback(isChecked);
   };
 
   public setInitialFontRangeSlider = async () => {
     const fontSize = await this.popupModel.getFontSize();
-
     this.fontSliderView.updateFontSlider(fontSize);
 
-    await sendMessageToContentRangeValue(fontSize);
+    await this.fontSliderCallback(fontSize);
   };
 
   public setInitialLanguageSelectorAndButton = async () => {
@@ -107,7 +120,7 @@ class PopupController {
     this.languageSelectorView.setSelectedElementStyle(languageCode);
     this.languageSelectorButtonView.setLanguageSelectorButtonText(languageCode);
 
-    await sendMessageToContentChangedLanguage(languageCode);
+    await this.languageSelectorCallback(languageCode);
   };
 }
 
