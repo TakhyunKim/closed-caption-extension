@@ -11,6 +11,16 @@ import { isLanguage } from "../../common/isLanguage";
 import type { LanguageCode } from "../../common/language.types";
 
 class PopupModel {
+  private fontSize: number;
+  private switchValue: boolean;
+  private languageCode: LanguageCode;
+
+  constructor() {
+    this.fontSize = 25;
+    this.switchValue = false;
+    this.languageCode = "ko";
+  }
+
   public setFontSize = async (fontSize: number) => {
     await setFontSizeValueInStorage(fontSize);
   };
