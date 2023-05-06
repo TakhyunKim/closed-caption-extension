@@ -22,31 +22,38 @@ class PopupModel {
   }
 
   public setFontSize = async (fontSize: number) => {
+    this.fontSize = fontSize;
+
     await setFontSizeValueInStorage(fontSize);
   };
 
   public getFontSize = async () => {
-    const fontSize = (await getFontSizeValueInStorage()) ?? 25;
+    const fontSize = (await getFontSizeValueInStorage()) ?? this.fontSize;
 
     return fontSize;
   };
 
   public setSwitchValue = async (value: boolean) => {
+    this.switchValue = value;
+
     await setSwitchValueInStorage(value);
   };
 
   public getSwitchValue = async () => {
-    const isChecked = (await getSwitchValueInStorage()) ?? false;
+    const isChecked = (await getSwitchValueInStorage()) ?? this.switchValue;
 
     return isChecked;
   };
 
   public setLanguageCode = async (languageCode: LanguageCode) => {
+    this.languageCode = languageCode;
+
     await setTranslatedTargetLanguageInStorage(languageCode);
   };
 
   public getLanguageCode = async () => {
-    const language = (await getTranslatedTargetLanguageInStorage()) ?? "ko";
+    const language =
+      (await getTranslatedTargetLanguageInStorage()) ?? this.languageCode;
     const languageCode = isLanguage(language) ? language : "ko";
 
     return languageCode;
