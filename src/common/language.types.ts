@@ -1,1 +1,22 @@
-export type LanguageCode = "en" | "ko" | "zh" | "es" | "ja" | "de";
+export type LanguageCode =
+  | "en"
+  | "ko"
+  | "zh"
+  | "es"
+  | "ja"
+  | "de"
+  | "ar"
+  | "be"
+  | "ca"
+  | "bg"
+  | "hr"
+  | "cs"
+  | "da"
+  | "nl"
+  | "fil"
+  | "fi"
+  | "fr"
+  | "el"
+  | "th"
+  | "uk"
+  | "vi";
