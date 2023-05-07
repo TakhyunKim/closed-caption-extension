@@ -34,7 +34,29 @@ describe("Language Selector Button View Test", () => {
   it("The language selector button should be another language when button text changed", () => {
     const LanguageSelectorButtonViewInstance = new LanguageSelectorButtonView();
 
-    const LANGUAGES: LanguageCode[] = ["de", "en", "es", "ja", "ko", "zh"];
+    const LANGUAGES: LanguageCode[] = [
+      "de",
+      "en",
+      "es",
+      "ja",
+      "ko",
+      "zh",
+      "ar",
+      "be",
+      "ca",
+      "bg",
+      "hr",
+      "cs",
+      "da",
+      "nl",
+      "fil",
+      "fi",
+      "fr",
+      "el",
+      "th",
+      "uk",
+      "vi",
+    ];
     const LANGUAGES_MAP: Map<LanguageCode, string> = new Map([
       ["de", "German"],
       ["ko", "Korean"],
@@ -43,6 +65,22 @@ describe("Language Selector Button View Test", () => {
       ["es", "Spanish"],
       ["de", "German"],
       ["ja", "Japanese"],
+      ["ja", "Japanese"],
+      ["ar", "Arabic"],
+      ["be", "Belarusian"],
+      ["ca", "Catalan"],
+      ["bg", "Bulgarian"],
+      ["hr", "Croatian"],
+      ["cs", "Czech"],
+      ["da", "Danish"],
+      ["nl", "Dutch"],
+      ["fil", "Filipino"],
+      ["fi", "Finnish"],
+      ["fr", "French"],
+      ["el", "Greek"],
+      ["th", "Thai"],
+      ["uk", "Ukrainian"],
+      ["vi", "Vietnamese"],
     ]);
 
     LANGUAGES.forEach((language) => {
