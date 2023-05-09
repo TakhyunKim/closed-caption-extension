@@ -1,7 +1,7 @@
 {
   "name": "closed caption - dual subtitle viewer",
   "manifest_version": 3,
-  "version": "2.3.2",
+  "version": "2.4.0",
   "description": "Extension for viewing another language subtitles and existing subtitles together",
   "background": {
     "service_worker": "background.js"
