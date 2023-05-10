@@ -1,0 +1,8 @@
+{
+  "name": {
+    "message": "closed caption - visionneuse de sous-titres doubles"
+  },
+  "description": {
+    "message": "Extension permettant de visualiser les sous-titres d'une autre langue en même temps que les sous-titres existants"
+  }
+}
