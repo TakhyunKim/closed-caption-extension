@@ -13,8 +13,8 @@ describe("Font Slider View Test", () => {
 
   it("The font slider view should be set to the target of translating element", () => {
     const FontSliderViewInstance = new FontSliderView();
-    const currentFontSliderValue = FontSliderViewInstance.getFontSliderValue();
-    const FontSliderViewElement = FontSliderViewInstance.getFontSliderElement();
+    const currentFontSliderValue = FontSliderViewInstance.getValue();
+    const FontSliderViewElement = FontSliderViewInstance.getElement();
 
     const FontRangeElement = document.getElementById(
       "font-size-range"
@@ -26,21 +26,21 @@ describe("Font Slider View Test", () => {
 
   it('The font slider element value should be "20"', () => {
     const FontSliderViewInstance = new FontSliderView();
-    const FontSliderElement = FontSliderViewInstance.getFontSliderElement();
+    const FontSliderElement = FontSliderViewInstance.getElement();
 
     expect(FontSliderElement.value).toBe(DEFAULT_RANGE_VALUE);
   });
 
   it('The font slider element max value should be "30"', () => {
     const FontSliderViewInstance = new FontSliderView();
-    const FontSliderElement = FontSliderViewInstance.getFontSliderElement();
+    const FontSliderElement = FontSliderViewInstance.getElement();
 
     expect(FontSliderElement.max).toBe(DEFAULT_RANGE_MAX);
   });
 
   it('The font slider element min value should be "10"', () => {
     const FontSliderViewInstance = new FontSliderView();
-    const FontSliderElement = FontSliderViewInstance.getFontSliderElement();
+    const FontSliderElement = FontSliderViewInstance.getElement();
 
     expect(FontSliderElement.min).toBe(DEFAULT_RANGE_MIN);
   });
@@ -48,10 +48,10 @@ describe("Font Slider View Test", () => {
   it("The font slider element style and value should be set default value to the target of translating element", () => {
     const FontSliderViewInstance = new FontSliderView();
 
-    FontSliderViewInstance.updateFontSlider(Number(DEFAULT_RANGE_VALUE));
+    FontSliderViewInstance.updateElement(Number(DEFAULT_RANGE_VALUE));
 
-    const FontSliderValue = FontSliderViewInstance.getFontSliderValue();
-    const FontSliderElement = FontSliderViewInstance.getFontSliderElement();
+    const FontSliderValue = FontSliderViewInstance.getValue();
+    const FontSliderElement = FontSliderViewInstance.getElement();
 
     expect(FontSliderValue).toBe(DEFAULT_RANGE_VALUE);
     expect(FontSliderElement.style.backgroundSize).toBe("50% 100%");
@@ -62,10 +62,10 @@ describe("Font Slider View Test", () => {
 
     const FontSliderViewInstance = new FontSliderView();
 
-    FontSliderViewInstance.updateFontSlider(Number(CHANGED_RANGE_VALUE));
+    FontSliderViewInstance.updateElement(Number(CHANGED_RANGE_VALUE));
 
-    const FontSliderValue = FontSliderViewInstance.getFontSliderValue();
-    const FontSliderElement = FontSliderViewInstance.getFontSliderElement();
+    const FontSliderValue = FontSliderViewInstance.getValue();
+    const FontSliderElement = FontSliderViewInstance.getElement();
 
     expect(FontSliderValue).toBe(CHANGED_RANGE_VALUE);
     expect(FontSliderElement.style.backgroundSize).toBe("75% 100%");
