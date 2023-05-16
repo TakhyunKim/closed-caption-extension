@@ -1,33 +1,33 @@
+import { PopupStyleView } from "./PopupView";
+
 import type { LanguageCode } from "../../common/language.types";
 
-class LanguageSelectView {
-  private readonly languageSelector: HTMLDivElement;
+class LanguageSelectView extends PopupStyleView {
+  protected readonly element: HTMLDivElement;
 
   constructor() {
-    this.languageSelector = document.getElementById(
+    super();
+
+    this.element = document.getElementById(
       "language-controller"
     ) as HTMLDivElement;
   }
 
-  private hiddenPrevSelectedElement = () => {
-    const prevSelectedElement =
-      this.languageSelector.querySelector(".selected");
-
-    if (!prevSelectedElement) return;
-
-    prevSelectedElement.classList.add("hidden");
-    prevSelectedElement.classList.remove("selected");
+  public getElement = () => {
+    return this.element;
   };
 
-  public getLanguageSelector = () => {
-    return this.languageSelector;
+  public updateElement = (language: LanguageCode) => {
+    this.hiddenPrevSelectedElement();
+    this.setElementStyle(language);
+    this.toggleLanguageSelectorDisplay();
   };
 
   public toggleLanguageSelectorDisplay = () => {
-    this.languageSelector.classList.toggle("hidden");
+    this.element.classList.toggle("hidden");
   };
 
-  public setSelectedElementStyle = (language: LanguageCode) => {
+  public setElementStyle = (language: LanguageCode) => {
     const targetLanguageElement = document.querySelector(
       `[data-lang="${language}"]`
     ) as HTMLDivElement;
@@ -38,10 +38,13 @@ class LanguageSelectView {
     targetLanguageSvgElement.classList.add("selected");
   };
 
-  public updateLanguage = (language: LanguageCode) => {
-    this.hiddenPrevSelectedElement();
-    this.setSelectedElementStyle(language);
-    this.toggleLanguageSelectorDisplay();
+  protected hiddenPrevSelectedElement = () => {
+    const prevSelectedElement = this.element.querySelector(".selected");
+
+    if (!prevSelectedElement) return;
+
+    prevSelectedElement.classList.add("hidden");
+    prevSelectedElement.classList.remove("selected");
   };
 }
 
