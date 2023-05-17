@@ -11,8 +11,7 @@ describe("Translating Switch View Test", () => {
 
   it("The translating switch view should be set to the translate id element", () => {
     const TranslatingSwitchViewInstance = new TranslatingSwitchView();
-    const SwitchViewElement =
-      TranslatingSwitchViewInstance.getTranslatingSwitchElement();
+    const SwitchViewElement = TranslatingSwitchViewInstance.getElement();
     const TranslatingElement = document.getElementById("translate");
 
     expect(SwitchViewElement).toBe(TranslatingElement);
@@ -20,8 +19,7 @@ describe("Translating Switch View Test", () => {
 
   it("The translating switch view default should be false", () => {
     const TranslatingSwitchViewInstance = new TranslatingSwitchView();
-    const switchValue =
-      TranslatingSwitchViewInstance.getTranslatingSwitchValue();
+    const switchValue = TranslatingSwitchViewInstance.getValue();
 
     expect(switchValue).toBe(false);
   });
@@ -29,10 +27,9 @@ describe("Translating Switch View Test", () => {
   it("The translating switch view should be change true", () => {
     const TranslatingSwitchViewInstance = new TranslatingSwitchView();
 
-    TranslatingSwitchViewInstance.setTranslatingSwitchValue(true);
+    TranslatingSwitchViewInstance.setValue(true);
 
-    const switchValue =
-      TranslatingSwitchViewInstance.getTranslatingSwitchValue();
+    const switchValue = TranslatingSwitchViewInstance.getValue();
 
     expect(switchValue).toBe(true);
   });

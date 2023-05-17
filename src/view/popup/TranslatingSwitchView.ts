@@ -1,22 +1,24 @@
-class TranslatingSwitchView {
-  private readonly translatingSwitchElement: HTMLInputElement;
+import { PopupView } from "./PopupView";
+
+class TranslatingSwitchView extends PopupView {
+  protected readonly element: HTMLInputElement;
 
   constructor() {
-    this.translatingSwitchElement = document.getElementById(
-      "translate"
-    ) as HTMLInputElement;
+    super();
+
+    this.element = document.getElementById("translate") as HTMLInputElement;
   }
 
-  public getTranslatingSwitchElement = () => {
-    return this.translatingSwitchElement;
+  public getElement = () => {
+    return this.element;
   };
 
-  public getTranslatingSwitchValue = () => {
-    return this.translatingSwitchElement.checked;
+  public getValue = () => {
+    return this.element.checked;
   };
 
-  public setTranslatingSwitchValue = (value: boolean) => {
-    this.translatingSwitchElement.checked = value;
+  public setValue = (value: boolean) => {
+    this.element.checked = value;
   };
 }
 
