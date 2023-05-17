@@ -443,11 +443,9 @@ describe("Popup Controller Test", () => {
     await popupController.setInitialFontRangeSlider();
     await popupController.setInitialLanguageSelectorAndButton();
 
-    const currentSwitchValue =
-      translatingSwitchView.getTranslatingSwitchValue();
-    const currentFontRangeValue = fontSliderView.getFontSliderValue();
-    const currentSelectorValue =
-      languageSelectorButtonView.getLanguageSelectorButtonText();
+    const currentSwitchValue = translatingSwitchView.getValue();
+    const currentFontRangeValue = fontSliderView.getValue();
+    const currentSelectorValue = languageSelectorButtonView.getValue();
 
     expect(mockSwitchCallback).toBeCalledTimes(1);
     expect(mockFontRangeCallback).toBeCalledTimes(1);
@@ -481,12 +479,11 @@ describe("Popup Controller Test", () => {
       mockSelectorButtonCallback
     );
 
-    const SwitchElement = translatingSwitchView.getTranslatingSwitchElement();
+    const SwitchElement = translatingSwitchView.getElement();
 
     SwitchElement.click();
 
-    const currentSwitchValueOfView =
-      translatingSwitchView.getTranslatingSwitchValue();
+    const currentSwitchValueOfView = translatingSwitchView.getValue();
     const currentSwitchValueOfModel = await popupModel.getSwitchValue();
 
     expect(currentSwitchValueOfView).toBe(true);
@@ -517,11 +514,11 @@ describe("Popup Controller Test", () => {
     );
 
     const LanguageSelectorButtonElement =
-      languageSelectorButtonView.getLanguageSelectorButtonElement();
+      languageSelectorButtonView.getElement();
 
     LanguageSelectorButtonElement.click();
 
-    const LanguageSelectorElement = languageSelectorView.getLanguageSelector();
+    const LanguageSelectorElement = languageSelectorView.getElement();
 
     expect(LanguageSelectorElement.className).not.toBe(
       "language_controller hidden"
@@ -555,7 +552,7 @@ describe("Popup Controller Test", () => {
     );
 
     const LanguageSelectorButtonElement =
-      languageSelectorButtonView.getLanguageSelectorButtonElement();
+      languageSelectorButtonView.getElement();
 
     LanguageSelectorButtonElement.click();
 
@@ -565,8 +562,7 @@ describe("Popup Controller Test", () => {
 
     TargetLanguageElement.click();
 
-    const LanguageSelectorButtonValue =
-      languageSelectorButtonView.getLanguageSelectorButtonText();
+    const LanguageSelectorButtonValue = languageSelectorButtonView.getValue();
 
     expect(LanguageSelectorButtonElement.className).not.toBe(
       "language_controller hidden"
@@ -597,13 +593,13 @@ describe("Popup Controller Test", () => {
       mockSelectorButtonCallback
     );
 
-    const FontSliderElement = fontSliderView.getFontSliderElement();
+    const FontSliderElement = fontSliderView.getElement();
     const event = new Event("input", { bubbles: true, cancelable: true });
 
     FontSliderElement.value = "30";
     FontSliderElement.dispatchEvent(event);
 
-    const FontSliderValue = fontSliderView.getFontSliderValue();
+    const FontSliderValue = fontSliderView.getValue();
 
     expect(FontSliderValue).toBe("30");
   });
