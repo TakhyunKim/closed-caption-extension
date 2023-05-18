@@ -1,106 +1,109 @@
+import { PopupView } from "./PopupView";
 import type { LanguageCode } from "../../common/language.types";
 
-class LanguageSelectorButtonView {
-  private readonly languageSelectorButton: HTMLButtonElement;
+class LanguageSelectorButtonView extends PopupView {
+  protected readonly element: HTMLButtonElement;
 
   constructor() {
-    this.languageSelectorButton = document.getElementById(
+    super();
+
+    this.element = document.getElementById(
       "language-select-button"
     ) as HTMLButtonElement;
   }
 
-  public getLanguageSelectorButtonElement = () => {
-    return this.languageSelectorButton;
+  public getElement = () => {
+    return this.element;
   };
 
-  public getLanguageSelectorButtonText = () => {
-    return this.languageSelectorButton.textContent;
+  public getValue = () => {
+    return this.element.textContent;
   };
 
-  public setLanguageSelectorButtonText = (language: LanguageCode) => {
+  public setValue = (language: LanguageCode) => {
     switch (language) {
       case "ko": {
-        this.languageSelectorButton.textContent = "Korean";
+        this.element.textContent = "Korean";
         break;
       }
       case "en": {
-        this.languageSelectorButton.textContent = "English";
+        this.element.textContent = "English";
         break;
       }
       case "zh": {
-        this.languageSelectorButton.textContent = "Chinese";
+        this.element.textContent = "Chinese";
         break;
       }
       case "es": {
-        this.languageSelectorButton.textContent = "Spanish";
+        this.element.textContent = "Spanish";
         break;
       }
       case "de": {
-        this.languageSelectorButton.textContent = "German";
+        this.element.textContent = "German";
         break;
       }
       case "ja": {
-        this.languageSelectorButton.textContent = "Japanese";
+        this.element.textContent = "Japanese";
         break;
       }
       case "ar": {
-        this.languageSelectorButton.textContent = "Arabic";
+        this.element.textContent = "Arabic";
         break;
       }
       case "be": {
-        this.languageSelectorButton.textContent = "Belarusian";
+        this.element.textContent = "Belarusian";
         break;
       }
       case "ca": {
-        this.languageSelectorButton.textContent = "Catalan";
+        this.element.textContent = "Catalan";
         break;
       }
       case "bg": {
-        this.languageSelectorButton.textContent = "Bulgarian";
+        this.element.textContent = "Bulgarian";
         break;
       }
       case "hr": {
-        this.languageSelectorButton.textContent = "Croatian";
+        this.element.textContent = "Croatian";
         break;
       }
       case "cs": {
-        this.languageSelectorButton.textContent = "Czech";
+        this.element.textContent = "Czech";
         break;
       }
       case "da": {
-        this.languageSelectorButton.textContent = "Danish";
+        this.element.textContent = "Danish";
         break;
       }
       case "nl": {
-        this.languageSelectorButton.textContent = "Dutch";
+        this.element.textContent = "Dutch";
         break;
       }
       case "fil": {
-        this.languageSelectorButton.textContent = "Filipino";
+        this.element.textContent = "Filipino";
         break;
       }
       case "fi": {
-        this.languageSelectorButton.textContent = "Finnish";
+        this.element.textContent = "Finnish";
         break;
       }
       case "fr": {
-        this.languageSelectorButton.textContent = "French";
+        this.element.textContent = "French";
         break;
       }
       case "el": {
-        this.languageSelectorButton.textContent = "Greek";
+        this.element.textContent = "Greek";
         break;
       }
       case "th": {
-        this.languageSelectorButton.textContent = "Thai";
+        this.element.textContent = "Thai";
         break;
       }
       case "uk": {
-        this.languageSelectorButton.textContent = "Ukrainian";
+        this.element.textContent = "Ukrainian";
         break;
       }
       case "vi": {
-        this.languageSelectorButton.textContent = "Vietnamese";
+        this.element.textContent = "Vietnamese";
         break;
       }
     }

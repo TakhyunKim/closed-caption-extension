@@ -1,35 +1,39 @@
-class FontSliderView {
-  private readonly sliderElement: HTMLInputElement;
+import { PopupStyleView } from "./PopupView";
+
+class FontSliderView extends PopupStyleView {
+  protected readonly element: HTMLInputElement;
 
   constructor() {
-    this.sliderElement = document.getElementById(
+    super();
+
+    this.element = document.getElementById(
       "font-size-range"
     ) as HTMLInputElement;
   }
 
-  private setFontSliderValue = (value: string) => {
-    this.sliderElement.value = value;
+  public getElement = () => {
+    return this.element;
   };
 
-  private setFontSliderStyle = (value: number) => {
-    const min = Number(this.sliderElement.min);
-    const max = Number(this.sliderElement.max);
+  public getValue = () => {
+    return this.element.value;
+  };
 
-    this.sliderElement.style.backgroundSize =
+  public updateElement = (value: number) => {
+    this.setElementStyle(value);
+    this.setValue(value.toString());
+  };
+
+  private setValue = (value: string) => {
+    this.element.value = value;
+  };
+
+  protected setElementStyle = (value: number) => {
+    const min = Number(this.element.min);
+    const max = Number(this.element.max);
+
+    this.element.style.backgroundSize =
       ((value - min) * 100) / (max - min) + "% 100%";
-  };
-
-  public getFontSliderElement = () => {
-    return this.sliderElement;
-  };
-
-  public getFontSliderValue = () => {
-    return this.sliderElement.value;
-  };
-
-  public updateFontSlider = (value: number) => {
-    this.setFontSliderStyle(value);
-    this.setFontSliderValue(value.toString());
   };
 }
 

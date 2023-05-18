@@ -12,7 +12,7 @@ describe("Language Selector Button View Test", () => {
   it("The language selector button should be set the language-selector-button id attribute", () => {
     const LanguageSelectorButtonViewInstance = new LanguageSelectorButtonView();
     const LanguageSelectorButtonViewElement =
-      LanguageSelectorButtonViewInstance.getLanguageSelectorButtonElement();
+      LanguageSelectorButtonViewInstance.getElement();
 
     const LanguageSelectorButtonElement = document.getElementById(
       "language-select-button"
@@ -26,7 +26,7 @@ describe("Language Selector Button View Test", () => {
   it('The language selector button default value should be "Korean"', () => {
     const LanguageSelectorButtonViewInstance = new LanguageSelectorButtonView();
     const languageSelectorButtonValue =
-      LanguageSelectorButtonViewInstance.getLanguageSelectorButtonText();
+      LanguageSelectorButtonViewInstance.getValue();
 
     expect(languageSelectorButtonValue).toBe("Korean");
   });
@@ -84,12 +84,10 @@ describe("Language Selector Button View Test", () => {
     ]);
 
     LANGUAGES.forEach((language) => {
-      LanguageSelectorButtonViewInstance.setLanguageSelectorButtonText(
-        language
-      );
+      LanguageSelectorButtonViewInstance.setValue(language);
 
       const currentLanguageSelectorButtonValue =
-        LanguageSelectorButtonViewInstance.getLanguageSelectorButtonText();
+        LanguageSelectorButtonViewInstance.getValue();
       const currentFullNameLanguage = LANGUAGES_MAP.get(language);
 
       expect(currentLanguageSelectorButtonValue).toBe(currentFullNameLanguage);

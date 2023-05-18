@@ -119,7 +119,7 @@ describe("Language Selector View Test", () => {
     ) as HTMLDivElement;
     const selectedLanguageElement = document.querySelector(".selected");
     const languageSelectorElementOfInstance =
-      LanguageSelectorViewInstance.getLanguageSelector();
+      LanguageSelectorViewInstance.getElement();
 
     /** The default state is No Element selected */
     expect(selectedLanguageElement).toBeNull();
@@ -131,7 +131,7 @@ describe("Language Selector View Test", () => {
 
     const LanguageSelectorViewInstance = new LanguageSelectView();
 
-    LanguageSelectorViewInstance.updateLanguage(DEFAULT_LANGUAGE);
+    LanguageSelectorViewInstance.updateElement(DEFAULT_LANGUAGE);
 
     const selectedLanguageElement = document.querySelector(".selected");
     const targetLanguageElement = document.querySelector(
@@ -150,7 +150,7 @@ describe("Language Selector View Test", () => {
     const LanguageSelectorViewInstance = new LanguageSelectView();
 
     /** Check value for initial KO */
-    LanguageSelectorViewInstance.updateLanguage(DEFAULT_LANGUAGE);
+    LanguageSelectorViewInstance.updateElement(DEFAULT_LANGUAGE);
 
     const defaultSelectedLanguageElement = document.querySelector(".selected");
     const defaultTargetLanguageElement = document.querySelector(
@@ -164,7 +164,7 @@ describe("Language Selector View Test", () => {
     );
 
     /** Check value for changed EN */
-    LanguageSelectorViewInstance.updateLanguage(EN_LANGUAGE);
+    LanguageSelectorViewInstance.updateElement(EN_LANGUAGE);
 
     const selectedLanguageElementOfChangedEnValue =
       document.querySelector(".selected");
@@ -178,7 +178,7 @@ describe("Language Selector View Test", () => {
       selectedLanguageElementOfChangedEnValue
     );
 
-    LanguageSelectorViewInstance.updateLanguage(DE_LANGUAGE);
+    LanguageSelectorViewInstance.updateElement(DE_LANGUAGE);
 
     const selectedLanguageElements = document.querySelectorAll(".selected");
     const selectedLanguageElementOfChangedDeValue =
