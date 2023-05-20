@@ -1,4 +1,4 @@
-import type { LanguageCode } from "../common/language.types";
+import type { LanguageCode } from "../../common/language.types";
 
 class Model {
   fontSize: number;

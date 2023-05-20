@@ -1,9 +1,9 @@
-import View from "../view";
-import Model from "../model";
+import View from "../../view/subtitle";
+import Model from "../../model/subtitle";
 
-import { sendMessageToBackgroundTranslatingText } from "../api/message";
+import { sendMessageToBackgroundTranslatingText } from "../../api/message";
 
-import type { LanguageCode } from "../common/language.types";
+import type { LanguageCode } from "../../common/language.types";
 
 class Controller {
   _view: View;

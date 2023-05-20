@@ -1,6 +1,6 @@
-import View from "./view";
-import Model from "./model";
-import Controller from "./controller";
+import View from "./view/subtitle";
+import Model from "./model/subtitle";
+import Controller from "./controller/subtitle";
 
 import Dom from "./Dom";
 import {

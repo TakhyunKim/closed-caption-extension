@@ -1,5 +1,5 @@
-import View from "../view";
-import Model from "../model";
+import View from "../../view/subtitle";
+import Model from "../../model/subtitle";
 import Controller from ".";
 
 const ViewInstance = new View("#target");
