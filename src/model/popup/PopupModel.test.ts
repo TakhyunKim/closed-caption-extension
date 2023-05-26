@@ -44,4 +44,18 @@ describe("Model", () => {
 
     expect(languageCode).toBe("en");
   });
+
+  test("The default text color should be #111111", async () => {
+    const textColor = await PopupModelInstance.getTextColor();
+
+    expect(textColor).toBe("#111111");
+  });
+
+  test("The text color value should be set #000000", async () => {
+    await PopupModelInstance.setTextColor("#000000");
+
+    const textColor = await PopupModelInstance.getTextColor();
+
+    expect(textColor).toBe("#000000");
+  });
 });

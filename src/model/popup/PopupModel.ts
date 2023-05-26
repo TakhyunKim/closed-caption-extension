@@ -5,6 +5,8 @@ import {
   getFontSizeValueInStorage,
   setTranslatedTargetLanguageInStorage,
   getTranslatedTargetLanguageInStorage,
+  getTextColorInStorage,
+  setTextColorInStorage,
 } from "../../api/storage";
 import { isLanguage } from "../../common/isLanguage";
 
@@ -12,11 +14,13 @@ import type { LanguageCode } from "../../common/language.types";
 
 class PopupModel {
   private fontSize: number;
+  private textColor: string;
   private switchValue: boolean;
   private languageCode: LanguageCode;
 
   constructor() {
     this.fontSize = 25;
+    this.textColor = "#111111";
     this.switchValue = false;
     this.languageCode = "ko";
   }
@@ -57,6 +61,18 @@ class PopupModel {
     const languageCode = isLanguage(language) ? language : "ko";
 
     return languageCode;
+  };
+
+  public getTextColor = async () => {
+    const textColor = (await getTextColorInStorage()) ?? this.textColor;
+
+    return textColor;
+  };
+
+  public setTextColor = async (textColor: string) => {
+    this.textColor = textColor;
+
+    await setTextColorInStorage(textColor);
   };
 }
 

@@ -30,4 +30,18 @@ describe("Model", () => {
 
     expect(targetOfTranslatingText).toBe("Hello");
   });
+
+  test("The default text color should be #111111", async () => {
+    const textColor = ModelInstance.getTextColor();
+
+    expect(textColor).toBe("#111111");
+  });
+
+  test("The text color value should be set #000000", async () => {
+    ModelInstance.setTextColor("#000000");
+
+    const textColor = ModelInstance.getTextColor();
+
+    expect(textColor).toBe("#000000");
+  });
 });
