@@ -1,6 +1,7 @@
 import Message from "./Message";
 
 import {
+  TEXT_COLOR_MESSAGE,
   TRANSLATE_CALL_MESSAGE,
   FONT_SIZE_RANGE_MESSAGE,
   CHANGE_LANGUAGE_MESSAGE,
@@ -68,11 +69,25 @@ const sendMessageToContentChangedLanguage = async (language: LanguageCode) => {
   );
 };
 
+const sendMessageToContentTextColor = async (textColor: string) => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const tabId = tab.id;
+
+  if (!tabId) return;
+
+  await Message.sendMessageToContentScript(
+    tabId,
+    TEXT_COLOR_MESSAGE,
+    textColor
+  );
+};
+
 export {
   sendMessageToBackgroundTranslatingText,
   sendMessageToContentIsActiveTranslation,
   sendMessageToContentRangeValue,
   sendMessageToContentChangedLanguage,
+  sendMessageToContentTextColor,
 };
 
 export type { ChromeAPIRequest, ChromeAPIResponse };
