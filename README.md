@@ -24,6 +24,7 @@ there are many difficulties in watching, such as incorrect translation.
 - [Frontend masters](https://frontendmasters.com/)
 - [udemy](https://www.udemy.com/)
 - [TED](https://www.ted.com/)
+- [Epic React](https://epicreact.dev/)
 
   I'm going to support more sites! 🧑‍💻
 
