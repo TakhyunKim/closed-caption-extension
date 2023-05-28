@@ -44,4 +44,18 @@ describe("Model", () => {
 
     expect(textColor).toBe("#000000");
   });
+
+  test("The default language code value should be set ko", async () => {
+    const languageCode = ModelInstance.getLanguageCode();
+
+    expect(languageCode).toBe("ko");
+  });
+
+  test("The language code value should be set en", async () => {
+    ModelInstance.setLanguageCode("en");
+
+    const languageCode = ModelInstance.getLanguageCode();
+
+    expect(languageCode).toBe("en");
+  });
 });
