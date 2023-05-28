@@ -52,8 +52,9 @@ class Controller {
       this._model.setTargetOfTranslatingText(textContent);
 
       const fontSize = this._model.getFontSize();
+      const textColor = this._model.getTextColor();
 
-      this._view.render.call(this._view, translatedText, fontSize);
+      this._view.render.call(this._view, translatedText, fontSize, textColor);
     };
 
     await sendMessageToBackgroundTranslatingText(
@@ -66,6 +67,11 @@ class Controller {
   changeFontSizeRangeElement(value: number) {
     this._model.setFontSize(value);
     this._view.setClosedCaptionFontSize(value);
+  }
+
+  changeTextColorElement(textColor: string) {
+    this._model.setTextColor(textColor);
+    this._view.setClosedCaptionTextColor(textColor);
   }
 
   changeLanguageCodeElement(languageCode: LanguageCode) {

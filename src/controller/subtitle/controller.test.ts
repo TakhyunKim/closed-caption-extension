@@ -32,10 +32,11 @@ describe("Controller", () => {
     document.body.innerHTML = `<div id="target">Hello world!</div>`;
 
     const FONT_SIZE = 25;
+    const TEXT_COLOR = "#111111";
 
     ViewInstance.setTargetOfTranslatingElement();
     // Set Mock View render method
-    ViewInstance.render("Hello world!", FONT_SIZE);
+    ViewInstance.render("Hello world!", FONT_SIZE, TEXT_COLOR);
     ControllerInstance.changeFontSizeRangeElement(FONT_SIZE);
 
     const fontSize = ModelInstance.getFontSize();
@@ -51,10 +52,11 @@ describe("Controller", () => {
     document.body.innerHTML = `<div id="target">Hello world!</div>`;
 
     const FONT_SIZE = 25;
+    const TEXT_COLOR = "#111111";
 
     ViewInstance.setTargetOfTranslatingElement();
     // Set Mock View render method
-    ViewInstance.render("Hello world!", FONT_SIZE);
+    ViewInstance.render("Hello world!", FONT_SIZE, TEXT_COLOR);
     ControllerInstance.deleteTranslatedElement();
 
     const closedCaptionElement = ViewInstance.getTranslatedElement();
