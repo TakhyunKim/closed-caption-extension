@@ -1,4 +1,5 @@
 import FontSliderView from "../../view/popup/FontSliderView";
+import TextColorPickerView from "../../view/popup/TextColorPickerView";
 import LanguageSelectView from "../../view/popup/LanguageSelectorView";
 import TranslatingSwitchView from "../../view/popup/TranslatingSwitchView";
 import LanguageSelectorButtonView from "../../view/popup/LanguageSelectorButtonView";
@@ -256,6 +257,29 @@ describe("Popup Controller Test", () => {
           <div class="wrapper">
             <div class="container">
               <div class="tag">
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg
+                  fill="#000000"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 1920 1920"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#ffffff"
+                >
+                  <path
+                    d="M1846.308 1476.923V1920H74v-443.077h1772.308Zm-147.693 147.692H221.692v147.693h1476.923v-147.693ZM1109.751.06l509.391 1227.028-136.468 56.566-164.972-397.588H602.576l-164.972 397.588-136.468-56.566L810.526.059h299.225Zm-98.658 147.692h-101.76L663.868 738.373h592.542L1011.093 147.75Z"
+                    fill-rule="evenodd"
+                    fill="#ffffff"
+                  />
+                </svg>
+                <span>Text Color</span>
+              </div>
+              <input id="text-color-picker" type="color" />
+            </div>
+          </div>
+          <div class="wrapper">
+            <div class="container">
+              <div class="tag">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -418,6 +442,7 @@ describe("Popup Controller Test", () => {
 
   it("The default value is set when the controller initial setting function is executed", async () => {
     const fontSliderView = new FontSliderView();
+    const textColorPickerView = new TextColorPickerView();
     const languageSelectorView = new LanguageSelectView();
     const translatingSwitchView = new TranslatingSwitchView();
     const languageSelectorButtonView = new LanguageSelectorButtonView();
@@ -425,16 +450,19 @@ describe("Popup Controller Test", () => {
     const popupModel = new PopupModel();
 
     const mockSwitchCallback = jest.fn();
+    const mockTextColorCallback = jest.fn();
     const mockFontRangeCallback = jest.fn();
     const mockSelectorButtonCallback = jest.fn();
 
     const popupController = new PopupController(
       fontSliderView,
+      textColorPickerView,
       languageSelectorView,
       translatingSwitchView,
       languageSelectorButtonView,
       popupModel,
       mockSwitchCallback,
+      mockTextColorCallback,
       mockFontRangeCallback,
       mockSelectorButtonCallback
     );
@@ -458,6 +486,7 @@ describe("Popup Controller Test", () => {
 
   it("The value changes when the translation switch is clicked", async () => {
     const fontSliderView = new FontSliderView();
+    const textColorPickerView = new TextColorPickerView();
     const languageSelectorView = new LanguageSelectView();
     const translatingSwitchView = new TranslatingSwitchView();
     const languageSelectorButtonView = new LanguageSelectorButtonView();
@@ -465,16 +494,19 @@ describe("Popup Controller Test", () => {
     const popupModel = new PopupModel();
 
     const mockSwitchCallback = jest.fn();
+    const mockTextColorCallback = jest.fn();
     const mockFontRangeCallback = jest.fn();
     const mockSelectorButtonCallback = jest.fn();
 
     new PopupController(
       fontSliderView,
+      textColorPickerView,
       languageSelectorView,
       translatingSwitchView,
       languageSelectorButtonView,
       popupModel,
       mockSwitchCallback,
+      mockTextColorCallback,
       mockFontRangeCallback,
       mockSelectorButtonCallback
     );
@@ -492,6 +524,7 @@ describe("Popup Controller Test", () => {
 
   it("Select button wrapper opens when clicking the translation settings button", () => {
     const fontSliderView = new FontSliderView();
+    const textColorPickerView = new TextColorPickerView();
     const languageSelectorView = new LanguageSelectView();
     const translatingSwitchView = new TranslatingSwitchView();
     const languageSelectorButtonView = new LanguageSelectorButtonView();
@@ -499,16 +532,19 @@ describe("Popup Controller Test", () => {
     const popupModel = new PopupModel();
 
     const mockSwitchCallback = jest.fn();
+    const mockTextColorCallback = jest.fn();
     const mockFontRangeCallback = jest.fn();
     const mockSelectorButtonCallback = jest.fn();
 
     new PopupController(
       fontSliderView,
+      textColorPickerView,
       languageSelectorView,
       translatingSwitchView,
       languageSelectorButtonView,
       popupModel,
       mockSwitchCallback,
+      mockTextColorCallback,
       mockFontRangeCallback,
       mockSelectorButtonCallback
     );
@@ -530,6 +566,7 @@ describe("Popup Controller Test", () => {
     const SELECTED_LANGUAGE = "en";
 
     const fontSliderView = new FontSliderView();
+    const textColorPickerView = new TextColorPickerView();
     const languageSelectorView = new LanguageSelectView();
     const translatingSwitchView = new TranslatingSwitchView();
     const languageSelectorButtonView = new LanguageSelectorButtonView();
@@ -537,16 +574,19 @@ describe("Popup Controller Test", () => {
     const popupModel = new PopupModel();
 
     const mockSwitchCallback = jest.fn();
+    const mockTextColorCallback = jest.fn();
     const mockFontRangeCallback = jest.fn();
     const mockSelectorButtonCallback = jest.fn();
 
     new PopupController(
       fontSliderView,
+      textColorPickerView,
       languageSelectorView,
       translatingSwitchView,
       languageSelectorButtonView,
       popupModel,
       mockSwitchCallback,
+      mockTextColorCallback,
       mockFontRangeCallback,
       mockSelectorButtonCallback
     );
@@ -572,6 +612,7 @@ describe("Popup Controller Test", () => {
 
   it("Modify the font size input to change the value", () => {
     const fontSliderView = new FontSliderView();
+    const textColorPickerView = new TextColorPickerView();
     const languageSelectorView = new LanguageSelectView();
     const translatingSwitchView = new TranslatingSwitchView();
     const languageSelectorButtonView = new LanguageSelectorButtonView();
@@ -579,16 +620,19 @@ describe("Popup Controller Test", () => {
     const popupModel = new PopupModel();
 
     const mockSwitchCallback = jest.fn();
+    const mockTextColorCallback = jest.fn();
     const mockFontRangeCallback = jest.fn();
     const mockSelectorButtonCallback = jest.fn();
 
     new PopupController(
       fontSliderView,
+      textColorPickerView,
       languageSelectorView,
       translatingSwitchView,
       languageSelectorButtonView,
       popupModel,
       mockSwitchCallback,
+      mockTextColorCallback,
       mockFontRangeCallback,
       mockSelectorButtonCallback
     );

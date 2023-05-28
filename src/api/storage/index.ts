@@ -44,6 +44,20 @@ const setTranslatedTargetLanguageInStorage = async (language: string) => {
   await Storage.setStorageValue("language", language);
 };
 
+const getTextColorInStorage = async () => {
+  const { textColor } = await Storage.getStorageValue<string | unknown>(
+    "textColor"
+  );
+
+  if (typeof textColor !== "string") return;
+
+  return textColor;
+};
+
+const setTextColorInStorage = async (textColor: string) => {
+  await Storage.setStorageValue("textColor", textColor);
+};
+
 export {
   getSwitchValueInStorage,
   setSwitchValueInStorage,
@@ -51,4 +65,6 @@ export {
   setFontSizeValueInStorage,
   getTranslatedTargetLanguageInStorage,
   setTranslatedTargetLanguageInStorage,
+  getTextColorInStorage,
+  setTextColorInStorage,
 };

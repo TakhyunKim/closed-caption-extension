@@ -4,12 +4,14 @@ import Controller from "./controller/subtitle";
 
 import Dom from "./Dom";
 import {
+  getTextColorInStorage,
   getSwitchValueInStorage,
   getFontSizeValueInStorage,
   getTranslatedTargetLanguageInStorage,
 } from "./api/storage";
 
 import {
+  TEXT_COLOR_MESSAGE,
   TRANSLATE_CALL_MESSAGE,
   FONT_SIZE_RANGE_MESSAGE,
   CHANGE_LANGUAGE_MESSAGE,
@@ -27,6 +29,10 @@ const controller = new Controller(view, model);
 
 const changeFontSizeRangeElement = (value: number) => {
   controller.changeFontSizeRangeElement(value);
+};
+
+const changeTextColorElement = (textColor: string) => {
+  controller.changeTextColorElement(textColor);
 };
 
 const changeTranslatedTargetLanguage = (languageCode: LanguageCode) => {
@@ -110,11 +116,17 @@ const disconnectClosedCaptionObserver = () => {
 const initialSetRenderClosedCaption = async () => {
   const isChecked = await getSwitchValueInStorage();
   const fontSize = await getFontSizeValueInStorage();
+  const textColor = await getTextColorInStorage();
+
   const translatedTargetLanguage =
     (await getTranslatedTargetLanguageInStorage()) ?? "ko";
   const languageCode = isLanguage(translatedTargetLanguage)
     ? translatedTargetLanguage
     : "ko";
+
+  if (textColor && typeof textColor === "string") {
+    changeTextColorElement(textColor);
+  }
 
   if (fontSize && typeof fontSize === "number")
     changeFontSizeRangeElement(fontSize);
@@ -138,6 +150,10 @@ chrome.runtime.onMessage.addListener(
 
     if (request.message === FONT_SIZE_RANGE_MESSAGE) {
       changeFontSizeRangeElement(request.data as number);
+    }
+
+    if (request.message === TEXT_COLOR_MESSAGE) {
+      changeTextColorElement(request.data as string);
     }
   }
 );

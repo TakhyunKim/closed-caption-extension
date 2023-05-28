@@ -7,15 +7,20 @@ class View {
     this.targetOfTranslatingElement = null;
   }
 
-  render(closedCaptionText: string, fontSize: number) {
+  render(closedCaptionText: string, fontSize: number, color: string) {
     this.domAttr === ".player-timedtext-text-container"
-      ? this.renderToBody(closedCaptionText, fontSize)
-      : this.renderToTargetOfTranslatingElement(closedCaptionText, fontSize);
+      ? this.renderToBody(closedCaptionText, fontSize, color)
+      : this.renderToTargetOfTranslatingElement(
+          closedCaptionText,
+          fontSize,
+          color
+        );
   }
 
   renderToTargetOfTranslatingElement(
     closedCaptionText: string,
-    fontSize: number
+    fontSize: number,
+    color: string
   ) {
     if (!this.targetOfTranslatingElement) return;
 
@@ -23,13 +28,14 @@ class View {
 
     const newClosedCaptionElement = this.createClosedCaptionTextElement(
       closedCaptionText,
-      fontSize
+      fontSize,
+      color
     );
 
     this.targetOfTranslatingElement.appendChild(newClosedCaptionElement);
   }
 
-  renderToBody(closedCaptionText: string, fontSize: number) {
+  renderToBody(closedCaptionText: string, fontSize: number, color: string) {
     const targetOfTranslatingElement = document.querySelector(".watch-video");
 
     if (!this.targetOfTranslatingElement || !targetOfTranslatingElement) return;
@@ -41,7 +47,8 @@ class View {
 
     const newClosedCaptionElement = this.createClosedCaptionTextElement(
       closedCaptionText,
-      fontSize
+      fontSize,
+      color
     );
 
     const newClosedCaptionElementWrapper =
@@ -95,7 +102,8 @@ class View {
 
   createClosedCaptionTextElement(
     text: string,
-    fontSize: number
+    fontSize: number,
+    color: string
   ): HTMLDivElement {
     const newClosedCaptionElement = document.createElement("div");
 
@@ -104,7 +112,7 @@ class View {
 
     newClosedCaptionElement.style.marginTop = "10px";
     newClosedCaptionElement.style.fontSize = `${fontSize}px`;
-    newClosedCaptionElement.style.color = "rgb(255, 255, 255)";
+    newClosedCaptionElement.style.color = color;
     newClosedCaptionElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
 
     return newClosedCaptionElement;
@@ -134,6 +142,16 @@ class View {
     if (!targetClosedCaptionElement) return;
 
     targetClosedCaptionElement.style.fontSize = `${fontSize}px`;
+  }
+
+  setClosedCaptionTextColor(textColor: string) {
+    const targetClosedCaptionElement = document.getElementById(
+      "text-track"
+    ) as HTMLDivElement | null;
+
+    if (!targetClosedCaptionElement) return;
+
+    targetClosedCaptionElement.style.color = textColor;
   }
 
   getTranslatedElement() {
