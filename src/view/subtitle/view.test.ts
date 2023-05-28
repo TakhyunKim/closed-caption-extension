@@ -96,7 +96,7 @@ describe("View", () => {
 
   describe("Test closed caption element rendering", () => {
     test("The closed caption translate render null when the target of translating element is null", () => {
-      ViewInstance.render("Hello world!", 20);
+      ViewInstance.render("Hello world!", 20, "#111111");
 
       const closedCaptionElement = ViewInstance.getTranslatedElement();
 
@@ -108,7 +108,7 @@ describe("View", () => {
 
       ViewInstance.setTargetOfTranslatingElement();
 
-      ViewInstance.render("Hello world!", 20);
+      ViewInstance.render("Hello world!", 20, "#111111");
 
       const closedCaptionElement = ViewInstance.getTranslatedElement();
 
@@ -129,7 +129,7 @@ describe("View", () => {
       document.body.innerHTML = `<div id="target"></div>`;
 
       ViewInstance.setTargetOfTranslatingElement();
-      ViewInstance.render("Hello world!", 20);
+      ViewInstance.render("Hello world!", 20, "#111111");
       ViewInstance.deleteClosedCaptionElement();
 
       const closedCaptionElement = ViewInstance.getTranslatedElement();
@@ -151,16 +151,17 @@ describe("View", () => {
       document.body.innerHTML = `<div id="target"></div>`;
 
       const FONT_SIZE = 20;
+      const TEXT_COLOR = "#111111";
 
       ViewInstance.setTargetOfTranslatingElement();
-      ViewInstance.render("Hello world!", FONT_SIZE);
+      ViewInstance.render("Hello world!", FONT_SIZE, TEXT_COLOR);
 
       const closedCaptionElement =
         ViewInstance.getTranslatedElement() as HTMLDivElement;
 
       expect(closedCaptionElement.style.marginTop).toBe("10px");
       expect(closedCaptionElement.style.fontSize).toBe(`${FONT_SIZE}px`);
-      expect(closedCaptionElement.style.color).toBe("rgb(255, 255, 255)");
+      expect(closedCaptionElement.style.color).toBe("rgb(17, 17, 17)");
       expect(closedCaptionElement.style.backgroundColor).toBe(
         "rgba(0, 0, 0, 0.8)"
       );
@@ -170,9 +171,10 @@ describe("View", () => {
       document.body.innerHTML = `<div id="target"></div>`;
 
       const FONT_SIZE = 20;
+      const TEXT_COLOR = "#111111";
 
       ViewInstance.setTargetOfTranslatingElement();
-      ViewInstance.render("Hello world!", FONT_SIZE);
+      ViewInstance.render("Hello world!", FONT_SIZE, TEXT_COLOR);
       ViewInstance.setClosedCaptionFontSize(FONT_SIZE);
 
       const closedCaptionElement =
