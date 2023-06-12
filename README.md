@@ -36,10 +36,6 @@ there are many difficulties in watching, such as incorrect translation.
     </a>
 </p>
 
-## 🕍 Architecture
-
-<img width="100%" alt="my extension architecture" src="./public/assets/readme/architecture.png" />
-
 ## 🧐 How to update website?
 
 1. Add the site URL that you add to the content_scripts matched array in the manifest.
