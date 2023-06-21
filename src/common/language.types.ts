@@ -19,4 +19,5 @@ export type LanguageCode =
   | "el"
   | "th"
   | "uk"
-  | "vi";
+  | "vi"
+  | "tr";
