@@ -21,4 +21,5 @@ export type LanguageCode =
   | "uk"
   | "vi"
   | "tr"
-  | "pl";
+  | "pl"
+  | "pt";
