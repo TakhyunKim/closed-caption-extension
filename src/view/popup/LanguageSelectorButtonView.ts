@@ -114,6 +114,10 @@ class LanguageSelectorButtonView extends PopupView {
         this.element.textContent = "Polish";
         break;
       }
+      case "pt": {
+        this.element.textContent = "Portuguese";
+        break;
+      }
     }
   };
 }
