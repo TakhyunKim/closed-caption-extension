@@ -58,6 +58,7 @@ describe("Language Selector Button View Test", () => {
       "vi",
       "tr",
       "pl",
+      "pt",
     ];
     const LANGUAGES_MAP: Map<LanguageCode, string> = new Map([
       ["de", "German"],
@@ -85,6 +86,7 @@ describe("Language Selector Button View Test", () => {
       ["vi", "Vietnamese"],
       ["tr", "Turkish"],
       ["pl", "Polish"],
+      ["pt", "Portuguese"],
     ]);
 
     LANGUAGES.forEach((language) => {
