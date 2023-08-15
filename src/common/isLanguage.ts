@@ -24,5 +24,7 @@ export const isLanguage = (language: string): language is LanguageCode => {
     "uk",
     "vi",
     "tr",
+    "pl",
+    "pt",
   ].includes(language);
 };
