@@ -39,7 +39,8 @@
         "*://www.youtube.com/*",
         "*://epicreact.dev/*",
         "*://www.ted.com/*",
-        "*://www.netflix.com/*"
+        "*://www.netflix.com/*",
+        "*://threejs-journey.com/*"
       ],
       "js": ["content.js"]
     }
