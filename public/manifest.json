@@ -40,7 +40,8 @@
         "*://epicreact.dev/*",
         "*://www.ted.com/*",
         "*://www.netflix.com/*",
-        "*://threejs-journey.com/*"
+        "*://threejs-journey.com/*",
+        "*://start.ru/*"
       ],
       "js": ["content.js"]
     }
