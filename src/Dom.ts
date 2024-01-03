@@ -41,6 +41,14 @@ const Dom: TRANSLATING_DOM_INFO = {
     domWrapperAttrs: ".player-timedtext",
     domAttrs: ".player-timedtext-text-container",
   },
+  "threejs-journey": {
+    domWrapperAttrs: ".js-tracks",
+    domAttrs: ".js-tracks-text",
+  },
+  start: {
+    domWrapperAttrs: "#controls",
+    domAttrs: ".StartPlayer_subtitles__nrh_r ",
+  },
 };
 
 export default Dom;
